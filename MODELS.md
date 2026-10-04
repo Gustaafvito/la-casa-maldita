@@ -126,4 +126,4 @@ Each model's license is listed in [LICENCIAS.md](LICENCIAS.md) (Spanish).
 
 ### 12 · The Gravedigger
 
-No models.
+Needs no model at all: it just joins your videos with transitions (KJNodes nodes). Runs on any PC.

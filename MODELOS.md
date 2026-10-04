@@ -126,4 +126,4 @@ La licencia de cada modelo está en [LICENCIAS.md](LICENCIAS.md).
 
 ### 12 · El Sepulturero
 
-Sin modelos.
+No necesita ningún modelo: solo une tus vídeos con transiciones (nodos de KJNodes). Funciona en cualquier PC.
