@@ -1,0 +1,7 @@
+__pycache__/
+*.pyc
+
+# notas personales de trabajo (no se publican)
+CLAUDE.md
+ESTADO_*.md
+VOCES_ELEVENLABS.md

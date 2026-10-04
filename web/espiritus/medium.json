@@ -1,0 +1,292 @@
+{
+  "titulo": "LA MÉDIUM",
+  "subtitulo": "Lo que describes, ella lo ve al otro lado",
+  "habitacion": "HABITACIÓN I · EL SALÓN DE LAS SESIONES",
+  "icono": "🔮",
+  "poster": "posters/medium.jpg",
+  "boton": "🕯 CONVOCAR 🕯",
+  "vacio": "La mesa está vacía. Describe lo que quieres que vea…",
+  "pie": "KREA 2 TURBO · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#08050d",
+    "panel": "rgba(22, 12, 30, .84)",
+    "acento": "#7b2cbf",
+    "acento2": "#e8b04a",
+    "texto": "#eee3d3",
+    "tenue": "#8f7fa0"
+  },
+  "narrador": {
+    "nombre": "LA MÉDIUM",
+    "frases": {
+      "inicio": [
+        "Siéntate. Pon las manos sobre la mesa y dime qué buscas.",
+        "Las velas ya están encendidas. ¿A quién quieres ver?",
+        "El velo está fino esta noche. Descríbemelo."
+      ],
+      "invocando": [
+        "Silencio… algo se acerca.",
+        "Lo veo… está tomando forma entre el humo.",
+        "No sueltes la mesa. Ya casi está aquí."
+      ],
+      "hecho": [
+        "Ahí lo tienes. No lo mires demasiado tiempo.",
+        "Ha cruzado. Lo que ves ya no se puede desver.",
+        "Se ha manifestado. ¿Quieres llamar a otro?"
+      ],
+      "error": [
+        "El espíritu se resiste. Revisa el ritual."
+      ]
+    },
+    "bienvenida": {
+      "t": "Bienvenido a mi salón… Las velas ya están encendidas. Descríbeme lo que quieres ver… y yo lo traeré desde el otro lado.",
+      "a": "audio/voz_medium.mp3"
+    }
+  },
+  "salidas": [
+    "🕯 REVELACIÓN"
+  ],
+  "controles": [
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Lo que la médium debe ver",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 5,
+      "placeholder": "una niña con camisón blanco al final de un pasillo de hotel abandonado, luz parpadeante…",
+      "default": "",
+      "nodo": "🕯 CONJURO",
+      "widget": "text",
+      "plantilla": "{atmosfera:pre}{prompt}.{atmosfera:post}{detalle}"
+    },
+    {
+      "id": "atmosfera",
+      "tipo": "presets",
+      "etiqueta": "Atmósfera",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Libre",
+          "icono": "∅",
+          "desc": "Sin estilo añadido: solo tu descripción.",
+          "pre": "",
+          "post": ""
+        },
+        {
+          "etiqueta": "Cine de terror",
+          "icono": "🎬",
+          "desc": "Fotograma de película: luz baja, sombras duras, niebla, grano de 35 mm.",
+          "pre": "A cinematic horror movie still frame, anamorphic widescreen look, low-key lighting with deep crushed shadows, thick volumetric fog, desaturated cold palette, 35mm film grain. The scene shows: ",
+          "post": " Horror film still, low-key lighting, fog, film grain."
+        },
+        {
+          "etiqueta": "Foto encontrada",
+          "icono": "📼",
+          "desc": "Foto nocturna con flash directo de cámara desechable de los 90, movida y granulada.",
+          "pre": "An amateur found photograph taken with a cheap 1990s disposable camera, harsh direct on-camera flash blowing out the foreground, pitch black background, red-eye, slight motion blur, date stamp in the corner. The photo shows: ",
+          "post": " Amateur disposable camera flash photo, grainy, overexposed foreground."
+        },
+        {
+          "etiqueta": "Polaroid maldita",
+          "icono": "🖼",
+          "desc": "Polaroid vieja y desvaída, con marco blanco, manchas químicas y arañazos.",
+          "pre": "An old faded Polaroid instant photograph with a thick white border, washed-out colors, yellowed chemical stains, scratches and heavy vignette. The photo shows: ",
+          "post": " Faded Polaroid photo, washed out colors, stains."
+        },
+        {
+          "etiqueta": "Grabado victoriano",
+          "icono": "🪶",
+          "desc": "Ilustración en tinta negra con tramado, sobre pergamino envejecido, sin color.",
+          "pre": "A black and white Victorian engraving illustration, black ink crosshatching on aged yellowed parchment paper, no color. The engraving depicts: ",
+          "post": " Victorian ink engraving, crosshatching, parchment, monochrome."
+        },
+        {
+          "etiqueta": "Folk horror",
+          "icono": "🌾",
+          "desc": "Luz de día gris y nublada, colores terrosos apagados, estética de cine A24.",
+          "pre": "A folk horror film still in pale overcast daylight, flat grey sky, muted earthy greens and browns, natural soft light, quiet unsettling rural atmosphere, A24 cinematography. The scene shows: ",
+          "post": " Folk horror, overcast daylight, muted earthy palette."
+        },
+        {
+          "etiqueta": "Cámara de seguridad",
+          "icono": "📹",
+          "desc": "Grabación CCTV en blanco y negro, visión nocturna, plano alto y marca de hora.",
+          "pre": "Black and white CCTV security camera still frame, grainy night vision, wide-angle high view, timestamp text overlay in the corner. The footage shows: ",
+          "post": " Black and white CCTV footage, night vision, low resolution."
+        }
+      ],
+      "ayuda": "cambia el tipo de imagen, no lo que sale"
+    },
+    {
+      "id": "detalle",
+      "tipo": "interruptor",
+      "etiqueta": "Presencia",
+      "si": "👁 Algo observa desde el fondo",
+      "no": "Sin presencias extra",
+      "default": false,
+      "texto_si": ", a barely visible pale ghostly figure watching from the darkness in the background",
+      "texto_no": "",
+      "ayuda": "añade una figura pálida casi invisible al fondo"
+    },
+    {
+      "id": "lienzo",
+      "tipo": "presets",
+      "etiqueta": "Lienzo",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Cuadrado",
+          "icono": "◻",
+          "fija": [
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "width",
+              "valor": 1024
+            },
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "height",
+              "valor": 1024
+            }
+          ]
+        },
+        {
+          "etiqueta": "Retrato",
+          "icono": "▯",
+          "fija": [
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "width",
+              "valor": 832
+            },
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "height",
+              "valor": 1216
+            }
+          ]
+        },
+        {
+          "etiqueta": "Reel 9:16",
+          "icono": "📱",
+          "fija": [
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "width",
+              "valor": 768
+            },
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "height",
+              "valor": 1344
+            }
+          ]
+        },
+        {
+          "etiqueta": "Cine 16:9",
+          "icono": "🎞",
+          "fija": [
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "width",
+              "valor": 1344
+            },
+            {
+              "nodo": "🕯 LIENZO",
+              "widget": "height",
+              "valor": 768
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cuantas",
+      "tipo": "deslizador",
+      "etiqueta": "Apariciones",
+      "min": 1,
+      "max": 4,
+      "paso": 1,
+      "default": 1,
+      "nodo": "🕯 LIENZO",
+      "widget": "batch_size"
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla del espíritu",
+      "ayuda": "fíjala para repetir la aparición",
+      "nodo": "🕯 RITUAL",
+      "widget": "seed"
+    },
+    {
+      "id": "pasos",
+      "tipo": "deslizador",
+      "etiqueta": "Pasos",
+      "avanzado": true,
+      "min": 4,
+      "max": 16,
+      "paso": 1,
+      "default": 8,
+      "nodo": "🕯 RITUAL",
+      "widget": "steps"
+    },
+    {
+      "id": "sampler",
+      "tipo": "lista",
+      "etiqueta": "Sampler",
+      "avanzado": true,
+      "default": "euler",
+      "nodo": "🕯 RITUAL",
+      "widget": "sampler_name"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 RITUAL",
+      "widget": "cfg",
+      "valor": 1.0
+    },
+    {
+      "nodo": "🕯 REVELACIÓN",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/01_medium/aparicion"
+    }
+  ],
+  "enviar": [
+    {
+      "a": "forense",
+      "workflow": "02_EL_FORENSE.json",
+      "etiqueta": "🩻 Llevar a la morgue",
+      "ayuda": "Ampliar con El Forense",
+      "frase": "Al forense, que lo mire con lupa."
+    },
+    {
+      "a": "costurera",
+      "workflow": "03_LA_COSTURERA.json",
+      "etiqueta": "🧵 Llevar al desván",
+      "ayuda": "Retocar una zona",
+      "frase": "Súbeselo a la costurera."
+    },
+    {
+      "a": "doppelganger",
+      "workflow": "05_EL_DOPPELGANGER.json",
+      "etiqueta": "🪞 Al espejo",
+      "ayuda": "Crear su doble en otra escena",
+      "frase": "Que se mire en el espejo…"
+    },
+    {
+      "a": "retrato",
+      "workflow": "07_EL_RETRATO.json",
+      "etiqueta": "🖼 Colgar en la galería",
+      "ayuda": "Darle vida: imagen → vídeo",
+      "frase": "Cuélgalo en la galería. Que despierte."
+    },
+    {
+      "a": "ouija",
+      "workflow": "10_LA_OUIJA.json",
+      "etiqueta": "🔤 A la ouija",
+      "ayuda": "Hacer que hable",
+      "frase": "Llévalo a la mesa de la ouija."
+    }
+  ]
+}

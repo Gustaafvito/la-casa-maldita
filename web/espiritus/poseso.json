@@ -1,0 +1,209 @@
+{
+  "titulo": "EL POSESO",
+  "subtitulo": "Otro cuerpo se mueve por él",
+  "habitacion": "HABITACIÓN IX · EL SÓTANO",
+  "icono": "🕺",
+  "poster": "posters/poseso.jpg",
+  "boton": "🕯 QUE LO POSEA 🕯",
+  "vacio": "Nadie se mueve en el sótano… todavía.",
+  "pie": "WAN SCAIL 2 · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#060806",
+    "panel": "rgba(12,20,12,.86)",
+    "acento": "#4f8a2b",
+    "acento2": "#d7e7b0",
+    "texto": "#e8eedc",
+    "tenue": "#8a9a7c"
+  },
+  "narrador": {
+    "nombre": "EL POSESO",
+    "frases": {
+      "inicio": [
+        "Dame un baile y un cuerpo. Yo los junto.",
+        "Lo que se mueva en el vídeo… lo hará tu personaje."
+      ],
+      "invocando": [
+        "Está entrando en el cuerpo…",
+        "No le mires a los ojos mientras ocurre."
+      ],
+      "hecho": [
+        "Poseído. Se mueve como el otro.",
+        "Ya no es él quien baila."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ]
+    },
+    "bienvenida": {
+      "t": "Otro cuerpo… Dame una figura y un movimiento. Yo me meteré dentro… y bailará por mí.",
+      "a": "audio/voz_poseso.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "embalsamador",
+      "workflow": "11_EL_EMBALSAMADOR.json",
+      "etiqueta": "⚱ A la cripta",
+      "ayuda": "Mejorar la calidad del vídeo",
+      "frase": "A la cripta, que lo conserven bien.",
+      "medio": "video"
+    },
+    {
+      "a": "sepulturero",
+      "workflow": "12_EL_SEPULTURERO.json",
+      "etiqueta": "⚰ Al cementerio",
+      "ayuda": "Añadir al montaje",
+      "frase": "Al cementerio, que lo entierren junto a los otros.",
+      "medio": "video"
+    }
+  ],
+  "salidas": [
+    "🕯 POSESIÓN"
+  ],
+  "controles": [
+    {
+      "id": "movimiento",
+      "tipo": "archivo",
+      "medio": "video",
+      "etiqueta": "El movimiento (vídeo)",
+      "ayuda": "una persona de cuerpo entero",
+      "placeholder": "Arrastra el vídeo cuyo movimiento quieres copiar",
+      "nodo": "🕯 MOVIMIENTO",
+      "widget": "video",
+      "subcarpeta": false
+    },
+    {
+      "id": "poseido",
+      "tipo": "imagen",
+      "etiqueta": "El poseído (personaje)",
+      "ayuda": "de cuerpo entero, mejor en una postura parecida",
+      "placeholder": "Arrastra la imagen del personaje",
+      "nodo": "🕯 POSEÍDO",
+      "widget": "image"
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Cómo es el poseído",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 3,
+      "placeholder": "a pale possessed girl in a torn white dress, stable identity, coherent clothing, natural motion",
+      "default": "",
+      "nodo": "🕯 CONJURO",
+      "widget": "text"
+    },
+    {
+      "id": "sonido",
+      "tipo": "presets",
+      "etiqueta": "Sonido del vídeo",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Sin sonido",
+          "icono": "🔇",
+          "desc": "El resultado sale mudo. Funciona con cualquier vídeo.",
+          "modos": [
+            {
+              "nodo": "🕯 SONIDO ORIGINAL",
+              "modo": 2
+            }
+          ]
+        },
+        {
+          "etiqueta": "Con el sonido del vídeo",
+          "icono": "🔊",
+          "desc": "Copia la música o la voz del vídeo de movimiento. El vídeo tiene que tener audio.",
+          "modos": [
+            {
+              "nodo": "🕯 SONIDO ORIGINAL",
+              "modo": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dur",
+      "tipo": "presets",
+      "etiqueta": "Duración",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "3 s",
+          "icono": "⏱",
+          "desc": "Rápido para probar.",
+          "fija": [
+            {
+              "nodo": "🕯 MOVIMIENTO",
+              "widget": "frame_load_cap",
+              "valor": 48
+            }
+          ]
+        },
+        {
+          "etiqueta": "5 s",
+          "icono": "⏱",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 MOVIMIENTO",
+              "widget": "frame_load_cap",
+              "valor": 80
+            }
+          ]
+        },
+        {
+          "etiqueta": "10 s",
+          "icono": "⏱",
+          "desc": "Tarda bastante.",
+          "fija": [
+            {
+              "nodo": "🕯 MOVIMIENTO",
+              "widget": "frame_load_cap",
+              "valor": 160
+            }
+          ]
+        },
+        {
+          "etiqueta": "20 s",
+          "icono": "⏳",
+          "desc": "Largo: puede tardar mucho.",
+          "fija": [
+            {
+              "nodo": "🕯 MOVIMIENTO",
+              "widget": "frame_load_cap",
+              "valor": 320
+            }
+          ]
+        },
+        {
+          "etiqueta": "30 s",
+          "icono": "⏳",
+          "desc": "Muy largo: déjalo trabajando.",
+          "fija": [
+            {
+              "nodo": "🕯 MOVIMIENTO",
+              "widget": "frame_load_cap",
+              "valor": 480
+            }
+          ]
+        },
+        {
+          "etiqueta": "Todo el vídeo",
+          "icono": "🎞",
+          "desc": "Copia el vídeo completo, dure lo que dure. Cuanto más largo, más tarda: pruébalo antes con 3 s.",
+          "fija": [
+            {
+              "nodo": "🕯 MOVIMIENTO",
+              "widget": "frame_load_cap",
+              "valor": 0
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,265 @@
+{
+  "titulo": "EL EXORCISTA",
+  "subtitulo": "Invoca una escena completa, con voz y sonido",
+  "habitacion": "HABITACIÓN VIII · LA CAPILLA",
+  "icono": "✝",
+  "poster": "posters/exorcista.jpg",
+  "boton": "✝ COMENZAR EL RITO ✝",
+  "vacio": "La capilla está en silencio…",
+  "pie": "MINIMAX H3 · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#080706",
+    "panel": "rgba(22,18,14,.88)",
+    "acento": "#8f1d1d",
+    "acento2": "#e6dcc0",
+    "texto": "#f1ebdd",
+    "tenue": "#9a8f7c"
+  },
+  "narrador": {
+    "nombre": "EL EXORCISTA",
+    "frases": {
+      "inicio": [
+        "Tráeme al poseído y dime qué debe ocurrir. Tardará… los ritos serios siempre tardan.",
+        "Agua bendita, crucifijo y paciencia. Mucha paciencia."
+      ],
+      "invocando": [
+        "In nomine… no te muevas.",
+        "El rito es largo. No abandones la capilla."
+      ],
+      "hecho": [
+        "Está hecho. Y esta vez se oye.",
+        "El rito ha terminado. Escucha con atención."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "El demonio se resiste. Revisa el rito (quizá falta memoria)."
+      ],
+      "llegada": [
+        "Me traen a otro. Preparad la capilla."
+      ]
+    },
+    "bienvenida": {
+      "t": "Esta es la capilla. Dime qué escena debo invocar… con sus voces y sus sonidos. Y reza para que no se quede.",
+      "a": "audio/voz_exorcista.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "embalsamador",
+      "workflow": "11_EL_EMBALSAMADOR.json",
+      "etiqueta": "⚱ A la cripta",
+      "ayuda": "Mejorar la calidad del vídeo",
+      "frase": "A la cripta, que lo conserven bien.",
+      "medio": "video"
+    },
+    {
+      "a": "sepulturero",
+      "workflow": "12_EL_SEPULTURERO.json",
+      "etiqueta": "⚰ Al cementerio",
+      "ayuda": "Añadir al montaje",
+      "frase": "Al cementerio, que lo entierren junto a los otros.",
+      "medio": "video"
+    }
+  ],
+  "salidas": [
+    "🕯 EXORCISMO",
+    "🕯 EXORCISMO FLUIDO"
+  ],
+  "modos": [
+    {
+      "nodo": "🕯 POSEÍDO",
+      "modo": 0
+    }
+  ],
+  "controles": [
+    {
+      "id": "poseido",
+      "tipo": "imagen",
+      "etiqueta": "El poseído (referencia)",
+      "ayuda": "personaje ficticio o tú",
+      "placeholder": "Arrastra la imagen del personaje",
+      "nodo": "🕯 POSEÍDO",
+      "widget": "image"
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Qué ocurre (y qué dice)",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 5,
+      "placeholder": "The man in <Image 1> kneels in a candlelit chapel and whispers: \"it is still here\". Thunder outside.",
+      "default": "",
+      "nodo": "🕯 RITO",
+      "widget": "value"
+    },
+    {
+      "id": "formato",
+      "tipo": "presets",
+      "etiqueta": "Formato",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Como la foto",
+          "icono": "🖼",
+          "desc": "Misma proporción que la imagen del poseído.",
+          "fija": [
+            {
+              "nodo": "🕯 PROPORCIÓN",
+              "widget": "value",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "etiqueta": "Vertical",
+          "icono": "▯",
+          "desc": "9:16 · móvil, Reels, TikTok, Shorts.",
+          "fija": [
+            {
+              "nodo": "🕯 PROPORCIÓN",
+              "widget": "value",
+              "valor": 563
+            }
+          ]
+        },
+        {
+          "etiqueta": "Cuadrado",
+          "icono": "◻",
+          "desc": "1:1.",
+          "fija": [
+            {
+              "nodo": "🕯 PROPORCIÓN",
+              "widget": "value",
+              "valor": 1000
+            }
+          ]
+        },
+        {
+          "etiqueta": "Horizontal",
+          "icono": "▭",
+          "desc": "16:9 · YouTube, cine.",
+          "fija": [
+            {
+              "nodo": "🕯 PROPORCIÓN",
+              "widget": "value",
+              "valor": 1778
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "calidad",
+      "tipo": "presets",
+      "etiqueta": "Calidad",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Rápida",
+          "icono": "⚡",
+          "desc": "0,5 MP (≈544×928 en vertical). Para probar ideas.",
+          "fija": [
+            {
+              "nodo": "🕯 MEGAPÍXELES",
+              "widget": "value",
+              "valor": 0.5
+            }
+          ]
+        },
+        {
+          "etiqueta": "Normal",
+          "icono": "◆",
+          "desc": "0,7 MP (≈640×1120 en vertical).",
+          "fija": [
+            {
+              "nodo": "🕯 MEGAPÍXELES",
+              "widget": "value",
+              "valor": 0.7
+            }
+          ]
+        },
+        {
+          "etiqueta": "Alta",
+          "icono": "✦",
+          "desc": "0,9 MP (≈704×1280 en vertical). Más lenta; solo hasta 6 s.",
+          "fija": [
+            {
+              "nodo": "🕯 MEGAPÍXELES",
+              "widget": "value",
+              "valor": 0.9
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dur",
+      "tipo": "presets",
+      "etiqueta": "Duración",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "4 s",
+          "icono": "⏱",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 DURACIÓN",
+              "widget": "value",
+              "valor": 4
+            }
+          ]
+        },
+        {
+          "etiqueta": "6 s",
+          "icono": "⏱",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 DURACIÓN",
+              "widget": "value",
+              "valor": 6
+            }
+          ]
+        },
+        {
+          "etiqueta": "8 s",
+          "icono": "⏱",
+          "desc": "Con 8 s la calidad máxima es Normal (Alta no cabe en 16 GB).",
+          "fija": [
+            {
+              "nodo": "🕯 DURACIÓN",
+              "widget": "value",
+              "valor": 8
+            }
+          ],
+          "limita": {
+            "calidad": 1
+          }
+        }
+      ]
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 SEMILLA",
+      "widget": "noise_seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 EXORCISMO",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/08_exorcista/exorcismo"
+    },
+    {
+      "nodo": "🕯 EXORCISMO FLUIDO",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/08_exorcista/exorcismo_fluido"
+    }
+  ]
+}

@@ -1,0 +1,334 @@
+{
+  "titulo": "EL RETRATO",
+  "subtitulo": "Los cuadros de esta casa no se están quietos",
+  "habitacion": "HABITACIÓN VII · LA GALERÍA",
+  "icono": "🖼",
+  "poster": "posters/retrato.jpg",
+  "boton": "🖼 DESPERTAR EL CUADRO 🖼",
+  "vacio": "El marco está vacío…",
+  "pie": "LTX 2.5 I2V · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#0a0805",
+    "panel": "rgba(26,20,10,.86)",
+    "acento": "#a8741e",
+    "acento2": "#f0d18a",
+    "texto": "#f2e8d4",
+    "tenue": "#a3937a"
+  },
+  "narrador": {
+    "nombre": "EL RETRATO",
+    "frases": {
+      "inicio": [
+        "Cuélgame un cuadro. Yo me encargo de que parpadee.",
+        "Los ojos de los retratos siempre siguen al que mira."
+      ],
+      "invocando": [
+        "El óleo empieza a moverse…",
+        "Shhh. Está respirando."
+      ],
+      "hecho": [
+        "Ha despertado. Ya no volverá a estar quieto.",
+        "Mira cómo se mueve dentro del marco."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ],
+      "llegada": [
+        "Me han traído un cuadro nuevo. Colgadlo ahí."
+      ]
+    },
+    "bienvenida": {
+      "t": "Los cuadros de esta casa no se están quietos. Dame un retrato… y le devolveré la vida.",
+      "a": "audio/voz_retrato.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "embalsamador",
+      "workflow": "11_EL_EMBALSAMADOR.json",
+      "etiqueta": "⚱ A la cripta",
+      "ayuda": "Mejorar la calidad del vídeo",
+      "frase": "A la cripta, que lo conserven bien.",
+      "medio": "video"
+    },
+    {
+      "a": "sepulturero",
+      "workflow": "12_EL_SEPULTURERO.json",
+      "etiqueta": "⚰ Al cementerio",
+      "ayuda": "Añadir al montaje",
+      "frase": "Al cementerio, que lo entierren junto a los otros.",
+      "medio": "video"
+    }
+  ],
+  "salidas": [
+    "🕯 VIDA"
+  ],
+  "controles": [
+    {
+      "id": "cuadro",
+      "tipo": "imagen",
+      "etiqueta": "El cuadro",
+      "ayuda": "será el primer fotograma",
+      "placeholder": "Arrastra la imagen que quieres animar",
+      "nodo": "🕯 CUADRO",
+      "widget": "image"
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Qué pasa en el cuadro",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 4,
+      "placeholder": "she slowly turns her head toward the camera and smiles as the candles flicker",
+      "default": "",
+      "nodo": "🕯 RETRATO",
+      "widget": "value",
+      "plantilla": "Use the provided image as the first frame. {prompt}{movimiento:texto}, film grain{sonido:texto}"
+    },
+    {
+      "id": "movimiento",
+      "tipo": "presets",
+      "etiqueta": "Movimiento",
+      "ayuda": "cuanto más, más vida… y más riesgo de deformar la cara",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Sutil",
+          "icono": "🕯",
+          "desc": "Casi quieto, como un cuadro que respira. Lo más seguro para caras.",
+          "texto": ". Subtle, slow, eerie motion, static camera"
+        },
+        {
+          "etiqueta": "Medio",
+          "icono": "🌫",
+          "desc": "Movimiento natural y la cámara se acerca despacio.",
+          "texto": ". Natural, clearly visible motion, the camera slowly pushes in, eerie atmosphere"
+        },
+        {
+          "etiqueta": "Intenso",
+          "icono": "⚡",
+          "desc": "Más acción y cámara en mano. Puede deformar algo la cara.",
+          "texto": ". Dynamic, fast and dramatic motion, strong movement of the subject and the environment, handheld camera moving closer, intense horror atmosphere"
+        }
+      ]
+    },
+    {
+      "id": "sonido",
+      "tipo": "presets",
+      "etiqueta": "Sonido",
+      "ayuda": "el vídeo genera su propio audio",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Solo lo que escriba",
+          "icono": "✍",
+          "desc": "Sin sonido añadido: suena solo lo que describas en el texto (si no describes nada, saldrá casi mudo).",
+          "texto": ""
+        },
+        {
+          "etiqueta": "Ambiente",
+          "icono": "🌫",
+          "desc": "Silencio tenso: viento lejano, crujidos de madera y un zumbido grave.",
+          "texto": ". Sound: tense ambient silence, distant wind, old wood creaking, a low eerie drone"
+        },
+        {
+          "etiqueta": "Susurros",
+          "icono": "🗣",
+          "desc": "Susurros ininteligibles alrededor.",
+          "texto": ". Sound: faint unintelligible whispers around, soft breathing, low drone"
+        },
+        {
+          "etiqueta": "Latido",
+          "icono": "💓",
+          "desc": "Un corazón que late cada vez más fuerte.",
+          "texto": ". Sound: a slow heartbeat growing louder, muffled room tone"
+        },
+        {
+          "etiqueta": "Tormenta",
+          "icono": "⛈",
+          "desc": "Lluvia, truenos lejanos y ventanas que golpean.",
+          "texto": ". Sound: heavy rain, distant thunder, a window rattling"
+        },
+        {
+          "etiqueta": "Caja de música",
+          "icono": "🎶",
+          "desc": "Una melodía de caja de música desafinada.",
+          "texto": ". Sound: an out-of-tune music box melody playing slowly, room echo"
+        }
+      ]
+    },
+    {
+      "id": "formato",
+      "tipo": "presets",
+      "etiqueta": "Formato",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Vertical 9:16",
+          "icono": "📱",
+          "desc": "Para Reels, TikTok y Shorts.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "aspect_ratio",
+              "valor": "9:16 (Portrait Widescreen)"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Horizontal 16:9",
+          "icono": "🎞",
+          "desc": "Formato cine / YouTube.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "aspect_ratio",
+              "valor": "16:9 (Widescreen)"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Cuadrado",
+          "icono": "◻",
+          "desc": "1:1 para feed.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "aspect_ratio",
+              "valor": "1:1 (Square)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "duracion",
+      "tipo": "presets",
+      "etiqueta": "Duración",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "3 s",
+          "icono": "⏱",
+          "desc": "Vídeo de unos 3 segundos.",
+          "fija": [
+            {
+              "nodo": "🕯 RETRATO",
+              "widget": "value_2",
+              "valor": 3
+            }
+          ]
+        },
+        {
+          "etiqueta": "5 s",
+          "icono": "⏱",
+          "desc": "Vídeo de unos 5 segundos.",
+          "fija": [
+            {
+              "nodo": "🕯 RETRATO",
+              "widget": "value_2",
+              "valor": 5
+            }
+          ]
+        },
+        {
+          "etiqueta": "8 s",
+          "icono": "⏱",
+          "desc": "Vídeo de unos 8 segundos.",
+          "fija": [
+            {
+              "nodo": "🕯 RETRATO",
+              "widget": "value_2",
+              "valor": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nitidez",
+      "tipo": "presets",
+      "etiqueta": "Nitidez",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Boceto",
+          "icono": "▫",
+          "desc": "≈ 540p. Rápido para probar ideas.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "megapixels",
+              "valor": 0.5
+            }
+          ]
+        },
+        {
+          "etiqueta": "Normal",
+          "icono": "◻",
+          "desc": "≈ 720p. El equilibrio de siempre.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "megapixels",
+              "valor": 0.9
+            }
+          ]
+        },
+        {
+          "etiqueta": "Alta",
+          "icono": "▣",
+          "desc": "≈ 900p. Más detalle, casi el doble de tiempo.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "megapixels",
+              "valor": 1.4
+            }
+          ]
+        },
+        {
+          "etiqueta": "Máxima",
+          "icono": "◼",
+          "desc": "≈ 1080p. Mucho más lento; si se queda sin memoria, baja a Alta.",
+          "fija": [
+            {
+              "nodo": "🕯 MARCO",
+              "widget": "megapixels",
+              "valor": 2.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mejora",
+      "tipo": "interruptor",
+      "etiqueta": "Mejorar el prompt con IA",
+      "avanzado": true,
+      "default": false,
+      "si": "Activado",
+      "no": "Apagado",
+      "nodo": "🕯 RETRATO",
+      "widget": "value_1"
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 RETRATO",
+      "widget": "noise_seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 VIDA",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/07_retrato/retrato"
+    }
+  ]
+}

@@ -1,0 +1,225 @@
+{
+  "titulo": "EL FORENSE",
+  "subtitulo": "Nada se le escapa bajo el bisturí",
+  "habitacion": "HABITACIÓN II · LA MORGUE",
+  "icono": "🩻",
+  "poster": "posters/forense.jpg",
+  "boton": "🩻 ABRIR EL CUERPO 🩻",
+  "vacio": "La mesa de autopsias está vacía. Tráeme una imagen…",
+  "pie": "SEEDVR2 · LA CASA MALDITA · gustaafvito.creador.ia",
+  "comparar": {
+    "antes": "CADÁVER",
+    "despues": "INFORME"
+  },
+  "tema": {
+    "fondo": "#040a0b",
+    "panel": "rgba(8, 20, 22, .86)",
+    "acento": "#1f8f86",
+    "acento2": "#d8d0b4",
+    "texto": "#e3ebe6",
+    "tenue": "#7f9894"
+  },
+  "narrador": {
+    "nombre": "EL FORENSE",
+    "voz": {
+      "eco": 0.25,
+      "tono": 0.97
+    },
+    "frases": {
+      "inicio": [
+        "Déjelo sobre la mesa. Con cuidado, que aún está fresco.",
+        "Otro cuerpo para la morgue. Veamos qué esconde.",
+        "Guantes puestos. Cuando quiera, empezamos."
+      ],
+      "llegada": [
+        "Me lo trae de arriba, de la sala de sesiones. Todavía está caliente.",
+        "La médium siempre me manda los más interesantes. Empecemos."
+      ],
+      "invocando": [
+        "Primera incisión… hay más detalle del que parecía.",
+        "Paciencia. Esto se hace capa a capa.",
+        "No aparte la vista. Lo mejor viene ahora."
+      ],
+      "encolado": [
+        "Póngalo en la cámara frigorífica. Le toca después."
+      ],
+      "hecho": [
+        "Informe terminado. Mire bien cada poro.",
+        "Ahí lo tiene, más nítido que en vida.",
+        "Autopsia completa. Arrastre la línea para comparar."
+      ],
+      "error": [
+        "El cuerpo no coopera. Revise el procedimiento."
+      ]
+    },
+    "bienvenida": {
+      "t": "Pase. Deje la imagen sobre la mesa. Voy a abrirla, limpiarla… y devolverle cada detalle. Nada se le escapa a mi bisturí.",
+      "a": "audio/voz_forense.mp3"
+    }
+  },
+  "salidas": [
+    "🕯 INFORME"
+  ],
+  "controles": [
+    {
+      "id": "imagen",
+      "tipo": "imagen",
+      "etiqueta": "El cuerpo",
+      "ayuda": "arrastra o haz clic",
+      "placeholder": "Arrastra aquí la imagen que quieres ampliar",
+      "nodo": "🕯 CADÁVER",
+      "widget": "image"
+    },
+    {
+      "id": "bisturi",
+      "tipo": "presets",
+      "etiqueta": "Bisturí",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Fino (3B)",
+          "icono": "🔪",
+          "desc": "Modelo ligero: rápido y con poca memoria. Ideal para la mayoría de imágenes.",
+          "fija": [
+            {
+              "nodo": "🕯 BISTURÍ",
+              "widget": "model",
+              "valor": "seedvr2_ema_3b_fp8_e4m3fn.safetensors"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Maestro (7B)",
+          "icono": "🗡",
+          "desc": "Modelo grande: más detalle en piel, pelo y texturas. Más lento.",
+          "fija": [
+            {
+              "nodo": "🕯 BISTURÍ",
+              "widget": "model",
+              "valor": "seedvr2_ema_7b_fp8_e4m3fn_mixed_block35_fp16.safetensors"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tamano",
+      "tipo": "presets",
+      "etiqueta": "Tamaño final",
+      "ayuda": "lado corto de la imagen",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "1536 px",
+          "icono": "▫",
+          "desc": "Algo más grande que una imagen normal. El más rápido.",
+          "fija": [
+            {
+              "nodo": "🕯 AUTOPSIA",
+              "widget": "resolution",
+              "valor": 1536
+            },
+            {
+              "nodo": "🕯 AUTOPSIA",
+              "widget": "max_resolution",
+              "valor": 3072
+            }
+          ]
+        },
+        {
+          "etiqueta": "2K",
+          "icono": "◻",
+          "desc": "El lado corto queda en 2048 px. Buen equilibrio.",
+          "fija": [
+            {
+              "nodo": "🕯 AUTOPSIA",
+              "widget": "resolution",
+              "valor": 2048
+            },
+            {
+              "nodo": "🕯 AUTOPSIA",
+              "widget": "max_resolution",
+              "valor": 4096
+            }
+          ]
+        },
+        {
+          "etiqueta": "3K",
+          "icono": "▣",
+          "desc": "Para imprimir en grande. Tarda bastante más.",
+          "fija": [
+            {
+              "nodo": "🕯 AUTOPSIA",
+              "widget": "resolution",
+              "valor": 2880
+            },
+            {
+              "nodo": "🕯 AUTOPSIA",
+              "widget": "max_resolution",
+              "valor": 5120
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "color",
+      "tipo": "lista",
+      "etiqueta": "Corrección de color",
+      "avanzado": true,
+      "default": "lab",
+      "nodo": "🕯 AUTOPSIA",
+      "widget": "color_correction"
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 AUTOPSIA",
+      "widget": "seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 AUTOPSIA",
+      "widget": "batch_size",
+      "valor": 1
+    },
+    {
+      "nodo": "🕯 INFORME",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/02_forense/informe"
+    }
+  ],
+  "enviar": [
+    {
+      "a": "costurera",
+      "workflow": "03_LA_COSTURERA.json",
+      "etiqueta": "🧵 Llevar al desván",
+      "ayuda": "Retocar una zona",
+      "frase": "Súbeselo a la costurera."
+    },
+    {
+      "a": "doppelganger",
+      "workflow": "05_EL_DOPPELGANGER.json",
+      "etiqueta": "🪞 Al espejo",
+      "ayuda": "Crear su doble en otra escena",
+      "frase": "Que se mire en el espejo…"
+    },
+    {
+      "a": "retrato",
+      "workflow": "07_EL_RETRATO.json",
+      "etiqueta": "🖼 Colgar en la galería",
+      "ayuda": "Darle vida: imagen → vídeo",
+      "frase": "Cuélgalo en la galería. Que despierte."
+    },
+    {
+      "a": "ouija",
+      "workflow": "10_LA_OUIJA.json",
+      "etiqueta": "🔤 A la ouija",
+      "ayuda": "Hacer que hable",
+      "frase": "Llévalo a la mesa de la ouija."
+    }
+  ]
+}

@@ -1,0 +1,254 @@
+{
+  "titulo": "LA OUIJA",
+  "subtitulo": "Pregunta… y alguien responderá con tu voz",
+  "habitacion": "HABITACIÓN X · LA MESA",
+  "icono": "🔤",
+  "poster": "posters/ouija.jpg",
+  "boton": "☽ PREGUNTAR ☾",
+  "vacio": "El puntero no se ha movido…",
+  "pie": "MINIMAX H3 · WAN HUMO · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#0a0706",
+    "panel": "rgba(24,16,12,.86)",
+    "acento": "#9a5a1e",
+    "acento2": "#f1d9a8",
+    "texto": "#f3e9d8",
+    "tenue": "#a39078"
+  },
+  "narrador": {
+    "nombre": "LA OUIJA",
+    "frases": {
+      "inicio": [
+        "Pon un rostro sobre la mesa y la voz que debe usar.",
+        "Dedos sobre el puntero. Nadie lo empuja… en teoría."
+      ],
+      "invocando": [
+        "El puntero se mueve solo…",
+        "S… Í… Está contestando."
+      ],
+      "hecho": [
+        "Ha hablado. Escúchalo.",
+        "La sesión ha terminado. Cierra el tablero al salir."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ],
+      "llegada": [
+        "Me traen una cara nueva para la mesa."
+      ]
+    },
+    "bienvenida": {
+      "t": "Hola… ¿Quieres jugar? Pon el dedo en la tabla. Alguien te va a responder… con tu misma voz.",
+      "a": "audio/voz_ouija.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "embalsamador",
+      "workflow": "11_EL_EMBALSAMADOR.json",
+      "etiqueta": "⚱ A la cripta",
+      "ayuda": "Mejorar la calidad del vídeo",
+      "frase": "A la cripta, que lo conserven bien.",
+      "medio": "video"
+    },
+    {
+      "a": "sepulturero",
+      "workflow": "12_EL_SEPULTURERO.json",
+      "etiqueta": "⚰ Al cementerio",
+      "ayuda": "Añadir al montaje",
+      "frase": "Al cementerio, que lo entierren junto a los otros.",
+      "medio": "video"
+    }
+  ],
+  "salidas": [
+    "🕯 RESPUESTA",
+    "🕯 RESPUESTA HABLADA"
+  ],
+  "controles": [
+    {
+      "id": "modo",
+      "tipo": "presets",
+      "etiqueta": "Cómo responde",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Hablar la foto",
+          "icono": "🗣",
+          "desc": "Anima TU foto tal cual (primer fotograma) hablando con tu audio (MiniMax H3). Cámara fija. Usa hasta 8 s del audio. Mejor con fotos de busto o plano medio.",
+          "modos": [
+            {
+              "nodo": "🕯 RESPUESTA HABLADA",
+              "modo": 0
+            },
+            {
+              "nodo": "🕯 RESPUESTA",
+              "modo": 2
+            }
+          ]
+        },
+        {
+          "etiqueta": "Otra escena",
+          "icono": "🔮",
+          "desc": "Crea una escena nueva con esa persona hablando, según el texto (HuMo). Cambia fondo y encuadre.",
+          "modos": [
+            {
+              "nodo": "🕯 RESPUESTA HABLADA",
+              "modo": 2
+            },
+            {
+              "nodo": "🕯 RESPUESTA",
+              "modo": 0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rostro",
+      "tipo": "imagen",
+      "etiqueta": "El rostro",
+      "ayuda": "quien hablará",
+      "placeholder": "Arrastra la imagen de la cara",
+      "nodo": "🕯 ROSTRO",
+      "widget": "image"
+    },
+    {
+      "id": "voz",
+      "tipo": "archivo",
+      "medio": "audio",
+      "etiqueta": "La voz",
+      "ayuda": "tu voz o una con permiso · «Hablar la foto» usa hasta 8 s",
+      "placeholder": "Arrastra el audio (wav, mp3)",
+      "nodo": "🕯 VOZ",
+      "widget": "audio",
+      "duracion_a": {
+        "nodo": "🕯 DURACIÓN VOZ",
+        "widget": "value",
+        "max": 8
+      }
+    },
+    {
+      "id": "calidad",
+      "tipo": "presets",
+      "etiqueta": "Calidad (Hablar la foto)",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Rápida",
+          "icono": "⚡",
+          "desc": "0,5 MP (≈544×928 en vertical). Unos 3 min por 5 s.",
+          "fija": [
+            {
+              "nodo": "🕯 MEGAPÍXELES",
+              "widget": "value",
+              "valor": 0.5
+            }
+          ]
+        },
+        {
+          "etiqueta": "Normal",
+          "icono": "◆",
+          "desc": "0,7 MP (≈640×1120 en vertical). Hasta 8 s.",
+          "fija": [
+            {
+              "nodo": "🕯 MEGAPÍXELES",
+              "widget": "value",
+              "valor": 0.7
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Qué hace / cómo es la escena",
+      "ayuda": "en inglés · opcional",
+      "filas": 3,
+      "placeholder": "Hablar la foto: gestos y expresión (she smiles and raises an eyebrow)… Otra escena: el lugar y la acción (an old woman speaks by candlelight)",
+      "default": "",
+      "nodo": "🕯 PREGUNTA",
+      "widget": "text",
+      "obligatorio": false,
+      "tambien": [
+        {
+          "nodo": "🕯 ACCIÓN",
+          "widget": "value"
+        }
+      ]
+    },
+    {
+      "id": "dur",
+      "tipo": "presets",
+      "etiqueta": "Duración (Otra escena)",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "2 s",
+          "icono": "⏱",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 TABLERO",
+              "widget": "length",
+              "valor": 49
+            }
+          ]
+        },
+        {
+          "etiqueta": "4 s",
+          "icono": "⏱",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 TABLERO",
+              "widget": "length",
+              "valor": 97
+            }
+          ]
+        },
+        {
+          "etiqueta": "6 s",
+          "icono": "⏱",
+          "desc": "Tarda bastante.",
+          "fija": [
+            {
+              "nodo": "🕯 TABLERO",
+              "widget": "length",
+              "valor": 145
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 SESIÓN",
+      "widget": "seed",
+      "tambien": [
+        {
+          "nodo": "🕯 SEMILLA VOZ",
+          "widget": "noise_seed"
+        }
+      ]
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 RESPUESTA",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/10_ouija/respuesta"
+    },
+    {
+      "nodo": "🕯 RESPUESTA HABLADA",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/10_ouija/respuesta_hablada"
+    }
+  ]
+}

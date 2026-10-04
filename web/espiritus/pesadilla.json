@@ -1,0 +1,295 @@
+{
+  "titulo": "LA PESADILLA",
+  "subtitulo": "Lo que sueñas, se mueve",
+  "habitacion": "HABITACIÓN VI · EL DORMITORIO",
+  "icono": "🌘",
+  "poster": "posters/pesadilla.jpg",
+  "boton": "🌘 DORMIR 🌘",
+  "vacio": "Aún no has soñado nada…",
+  "pie": "LTX 2.5 · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#07060d",
+    "panel": "rgba(16,12,28,.86)",
+    "acento": "#4b3c9e",
+    "acento2": "#c9b6ff",
+    "texto": "#e8e4f4",
+    "tenue": "#8d86a8"
+  },
+  "narrador": {
+    "nombre": "LA PESADILLA",
+    "frases": {
+      "inicio": [
+        "Cierra los ojos. Cuéntame qué ves.",
+        "Las pesadillas buenas empiezan con un detalle pequeño."
+      ],
+      "invocando": [
+        "Te estás quedando dormido…",
+        "Algo se acerca a la cama…"
+      ],
+      "hecho": [
+        "Despierta. Ya lo has visto.",
+        "Eso no ha sido un sueño… ¿verdad?"
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ]
+    },
+    "bienvenida": {
+      "t": "Shhh… estás soñando. Cuéntame tu pesadilla… y yo haré que se mueva.",
+      "a": "audio/voz_pesadilla.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "embalsamador",
+      "workflow": "11_EL_EMBALSAMADOR.json",
+      "etiqueta": "⚱ A la cripta",
+      "ayuda": "Mejorar la calidad del vídeo",
+      "frase": "A la cripta, que lo conserven bien.",
+      "medio": "video"
+    },
+    {
+      "a": "sepulturero",
+      "workflow": "12_EL_SEPULTURERO.json",
+      "etiqueta": "⚰ Al cementerio",
+      "ayuda": "Añadir al montaje",
+      "frase": "Al cementerio, que lo entierren junto a los otros.",
+      "medio": "video"
+    }
+  ],
+  "salidas": [
+    "🕯 DESPERTAR"
+  ],
+  "controles": [
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Qué ocurre en la pesadilla",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 5,
+      "placeholder": "a child's bedroom at night, the closet door slowly creaks open and pale fingers curl around its edge",
+      "default": "",
+      "nodo": "🕯 PESADILLA",
+      "widget": "text",
+      "plantilla": "{prompt}. Cinematic horror, low-key lighting, slow camera movement, film grain{sonido:texto}"
+    },
+    {
+      "id": "sonido",
+      "tipo": "presets",
+      "etiqueta": "Sonido",
+      "ayuda": "el vídeo genera su propio audio",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Solo lo que escriba",
+          "icono": "✍",
+          "desc": "Sin sonido añadido: suena solo lo que describas en el texto (si no describes nada, saldrá casi mudo).",
+          "texto": ""
+        },
+        {
+          "etiqueta": "Ambiente",
+          "icono": "🌫",
+          "desc": "Silencio tenso: viento lejano, crujidos de madera y un zumbido grave.",
+          "texto": ". Sound: tense ambient silence, distant wind, old wood creaking, a low eerie drone"
+        },
+        {
+          "etiqueta": "Susurros",
+          "icono": "🗣",
+          "desc": "Susurros ininteligibles alrededor.",
+          "texto": ". Sound: faint unintelligible whispers around, soft breathing, low drone"
+        },
+        {
+          "etiqueta": "Latido",
+          "icono": "💓",
+          "desc": "Un corazón que late cada vez más fuerte.",
+          "texto": ". Sound: a slow heartbeat growing louder, muffled room tone"
+        },
+        {
+          "etiqueta": "Tormenta",
+          "icono": "⛈",
+          "desc": "Lluvia, truenos lejanos y ventanas que golpean.",
+          "texto": ". Sound: heavy rain, distant thunder, a window rattling"
+        },
+        {
+          "etiqueta": "Caja de música",
+          "icono": "🎶",
+          "desc": "Una melodía de caja de música desafinada.",
+          "texto": ". Sound: an out-of-tune music box melody playing slowly, room echo"
+        }
+      ]
+    },
+    {
+      "id": "formato",
+      "tipo": "presets",
+      "etiqueta": "Formato",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Vertical 9:16",
+          "icono": "📱",
+          "desc": "Para Reels, TikTok y Shorts.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "aspect_ratio",
+              "valor": "9:16 (Portrait Widescreen)"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Horizontal 16:9",
+          "icono": "🎞",
+          "desc": "Formato cine / YouTube.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "aspect_ratio",
+              "valor": "16:9 (Widescreen)"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Cuadrado",
+          "icono": "◻",
+          "desc": "1:1 para feed.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "aspect_ratio",
+              "valor": "1:1 (Square)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "duracion",
+      "tipo": "presets",
+      "etiqueta": "Duración",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "3 s",
+          "icono": "⏱",
+          "desc": "Vídeo de unos 3 segundos.",
+          "fija": [
+            {
+              "nodo": "🕯 PESADILLA",
+              "widget": "value_1",
+              "valor": 3
+            }
+          ]
+        },
+        {
+          "etiqueta": "5 s",
+          "icono": "⏱",
+          "desc": "Vídeo de unos 5 segundos.",
+          "fija": [
+            {
+              "nodo": "🕯 PESADILLA",
+              "widget": "value_1",
+              "valor": 5
+            }
+          ]
+        },
+        {
+          "etiqueta": "8 s",
+          "icono": "⏱",
+          "desc": "Vídeo de unos 8 segundos.",
+          "fija": [
+            {
+              "nodo": "🕯 PESADILLA",
+              "widget": "value_1",
+              "valor": 8
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nitidez",
+      "tipo": "presets",
+      "etiqueta": "Nitidez",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Boceto",
+          "icono": "▫",
+          "desc": "≈ 540p. Rápido para probar ideas.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "megapixels",
+              "valor": 0.5
+            }
+          ]
+        },
+        {
+          "etiqueta": "Normal",
+          "icono": "◻",
+          "desc": "≈ 720p. El equilibrio de siempre.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "megapixels",
+              "valor": 0.9
+            }
+          ]
+        },
+        {
+          "etiqueta": "Alta",
+          "icono": "▣",
+          "desc": "≈ 900p. Más detalle, casi el doble de tiempo.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "megapixels",
+              "valor": 1.4
+            }
+          ]
+        },
+        {
+          "etiqueta": "Máxima",
+          "icono": "◼",
+          "desc": "≈ 1080p. Mucho más lento; si se queda sin memoria, baja a Alta.",
+          "fija": [
+            {
+              "nodo": "🕯 VENTANA",
+              "widget": "megapixels",
+              "valor": 2.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mejora",
+      "tipo": "interruptor",
+      "etiqueta": "Mejorar el prompt con IA",
+      "avanzado": true,
+      "default": false,
+      "si": "Activado",
+      "no": "Apagado",
+      "nodo": "🕯 PESADILLA",
+      "widget": "value"
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 PESADILLA",
+      "widget": "noise_seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 DESPERTAR",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/06_pesadilla/pesadilla"
+    }
+  ]
+}

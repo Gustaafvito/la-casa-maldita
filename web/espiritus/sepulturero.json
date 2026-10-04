@@ -1,0 +1,362 @@
+{
+  "titulo": "EL SEPULTURERO",
+  "subtitulo": "Todo termina aquí: une tus escenas",
+  "habitacion": "HABITACIÓN XII · EL CEMENTERIO",
+  "icono": "⚰",
+  "poster": "posters/sepulturero.jpg",
+  "boton": "⚰ DAR SEPULTURA ⚰",
+  "vacio": "Las fosas esperan…",
+  "pie": "MONTAJE · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#060606",
+    "panel": "rgba(16,16,16,.88)",
+    "acento": "#6e6e6e",
+    "acento2": "#d9d4c7",
+    "texto": "#ecebe6",
+    "tenue": "#8e8b84"
+  },
+  "narrador": {
+    "nombre": "EL SEPULTURERO",
+    "frases": {
+      "inicio": [
+        "Dos o tres fosas. Yo echo la tierra entre una y otra.",
+        "Aquí acaban todas las historias de la casa."
+      ],
+      "invocando": [
+        "Palada… palada… palada.",
+        "Uniendo las fosas con tierra fresca."
+      ],
+      "hecho": [
+        "Enterrados juntos. Descansen en paz.",
+        "El montaje está listo. Ya puedes subirlo."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ],
+      "llegada": [
+        "Otro cuerpo para el cementerio. Lo pongo en la primera fosa libre."
+      ]
+    },
+    "bienvenida": {
+      "t": "Todo termina aquí. Trae tus escenas… yo las entierro juntas, una detrás de otra. Como siempre.",
+      "a": "audio/voz_sepulturero.mp3"
+    }
+  },
+  "salidas": [
+    "🕯 LÁPIDA"
+  ],
+  "montaje": {
+    "videos": [
+      "fosa1",
+      "fosa2",
+      "fosa3"
+    ],
+    "uniones": [
+      "🕯 PALADA I",
+      "🕯 PALADA II"
+    ],
+    "transicion_de": [
+      "trans",
+      "trans2"
+    ],
+    "ajustes": [
+      "🕯 AJUSTE II",
+      "🕯 AJUSTE III"
+    ]
+  },
+  "controles": [
+    {
+      "id": "fosa1",
+      "tipo": "archivo",
+      "medio": "video",
+      "etiqueta": "Fosa I",
+      "placeholder": "Primer vídeo",
+      "nodo": "🕯 FOSA I",
+      "widget": "file"
+    },
+    {
+      "id": "fosa2",
+      "tipo": "archivo",
+      "medio": "video",
+      "etiqueta": "Fosa II",
+      "placeholder": "Segundo vídeo",
+      "nodo": "🕯 FOSA II",
+      "widget": "file"
+    },
+    {
+      "id": "fosa3",
+      "tipo": "archivo",
+      "medio": "video",
+      "etiqueta": "Fosa III (opcional)",
+      "placeholder": "Tercer vídeo (opcional)",
+      "nodo": "🕯 FOSA III",
+      "widget": "file",
+      "obligatorio": false,
+      "si_vacio": [
+        {
+          "nodo": "🕯 FOSA III",
+          "modo": 4
+        },
+        {
+          "nodo": "Fosa III · piezas",
+          "modo": 4
+        },
+        {
+          "nodo": "🕯 PALADA II",
+          "modo": 4
+        },
+        {
+          "nodo": "Audio III",
+          "modo": 4
+        },
+        {
+          "nodo": "🕯 AJUSTE III",
+          "modo": 4
+        }
+      ]
+    },
+    {
+      "id": "trans",
+      "tipo": "presets",
+      "etiqueta": "Paso I → II",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Fundido",
+          "icono": "🌫",
+          "desc": "Se funde suavemente.",
+          "frames": 10,
+          "tipo": "fade",
+          "interp": "linear",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Fundido lento",
+          "icono": "🌁",
+          "desc": "Fundido largo, muy de terror.",
+          "frames": 24,
+          "tipo": "fade",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Corte seco",
+          "icono": "✂",
+          "desc": "Cambio de golpe, sin efecto.",
+          "frames": 1,
+          "tipo": "fade",
+          "interp": "linear",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Glitch",
+          "icono": "📺",
+          "desc": "Parpadeo de interferencia.",
+          "frames": 12,
+          "tipo": "fade",
+          "interp": "glitchy",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Deslizar ⇢",
+          "icono": "➡",
+          "desc": "El nuevo empuja desde un lado.",
+          "frames": 14,
+          "tipo": "horizontal slide",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Deslizar ⇡",
+          "icono": "⬆",
+          "desc": "El nuevo entra desde abajo.",
+          "frames": 14,
+          "tipo": "vertical slide",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Puerta",
+          "icono": "🚪",
+          "desc": "Se abre como una puerta.",
+          "frames": 14,
+          "tipo": "horizontal door",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Puerta vertical",
+          "icono": "🎭",
+          "desc": "Se abre de arriba abajo.",
+          "frames": 14,
+          "tipo": "vertical door",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Círculo",
+          "icono": "⭕",
+          "desc": "Se abre en círculo desde el centro.",
+          "frames": 14,
+          "tipo": "circle",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Caja",
+          "icono": "🔲",
+          "desc": "Crece un cuadro desde el centro.",
+          "frames": 14,
+          "tipo": "box",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Rebote",
+          "icono": "🏀",
+          "desc": "Entra deslizando con rebote.",
+          "frames": 18,
+          "tipo": "horizontal slide",
+          "interp": "bounce",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Elástico",
+          "icono": "🌀",
+          "desc": "Círculo que tiembla al abrirse.",
+          "frames": 18,
+          "tipo": "circle",
+          "interp": "elastic",
+          "reverse": false
+        }
+      ]
+    },
+    {
+      "id": "trans2",
+      "tipo": "presets",
+      "etiqueta": "Paso II → III",
+      "ayuda": "solo si hay Fosa III",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Fundido",
+          "icono": "🌫",
+          "desc": "Se funde suavemente.",
+          "frames": 10,
+          "tipo": "fade",
+          "interp": "linear",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Fundido lento",
+          "icono": "🌁",
+          "desc": "Fundido largo, muy de terror.",
+          "frames": 24,
+          "tipo": "fade",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Corte seco",
+          "icono": "✂",
+          "desc": "Cambio de golpe, sin efecto.",
+          "frames": 1,
+          "tipo": "fade",
+          "interp": "linear",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Glitch",
+          "icono": "📺",
+          "desc": "Parpadeo de interferencia.",
+          "frames": 12,
+          "tipo": "fade",
+          "interp": "glitchy",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Deslizar ⇢",
+          "icono": "➡",
+          "desc": "El nuevo empuja desde un lado.",
+          "frames": 14,
+          "tipo": "horizontal slide",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Deslizar ⇡",
+          "icono": "⬆",
+          "desc": "El nuevo entra desde abajo.",
+          "frames": 14,
+          "tipo": "vertical slide",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Puerta",
+          "icono": "🚪",
+          "desc": "Se abre como una puerta.",
+          "frames": 14,
+          "tipo": "horizontal door",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Puerta vertical",
+          "icono": "🎭",
+          "desc": "Se abre de arriba abajo.",
+          "frames": 14,
+          "tipo": "vertical door",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Círculo",
+          "icono": "⭕",
+          "desc": "Se abre en círculo desde el centro.",
+          "frames": 14,
+          "tipo": "circle",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Caja",
+          "icono": "🔲",
+          "desc": "Crece un cuadro desde el centro.",
+          "frames": 14,
+          "tipo": "box",
+          "interp": "ease_in_out",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Rebote",
+          "icono": "🏀",
+          "desc": "Entra deslizando con rebote.",
+          "frames": 18,
+          "tipo": "horizontal slide",
+          "interp": "bounce",
+          "reverse": false
+        },
+        {
+          "etiqueta": "Elástico",
+          "icono": "🌀",
+          "desc": "Círculo que tiembla al abrirse.",
+          "frames": 18,
+          "tipo": "circle",
+          "interp": "elastic",
+          "reverse": false
+        }
+      ]
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 LÁPIDA",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/12_sepulturero/lapida"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "titulo": "LA COSTURERA",
+  "subtitulo": "Descose lo que sobra y cose lo que falta",
+  "habitacion": "HABITACIÓN III · EL DESVÁN",
+  "icono": "🧵",
+  "poster": "posters/costurera.jpg",
+  "boton": "🧵 COSER 🧵",
+  "vacio": "Todavía no ha cosido nada…",
+  "pie": "Z-IMAGE TURBO · LA CASA MALDITA · gustaafvito.creador.ia",
+  "pestanas": [
+    "🧵 Tela",
+    "🪡 Remiendo"
+  ],
+  "comparar": {
+    "antes": "TELA",
+    "despues": "REMIENDO"
+  },
+  "tema": {
+    "fondo": "#0b0706",
+    "panel": "rgba(26, 14, 12, .86)",
+    "acento": "#9e2a2b",
+    "acento2": "#e0c9a6",
+    "texto": "#efe4d6",
+    "tenue": "#9c8778"
+  },
+  "narrador": {
+    "nombre": "LA COSTURERA",
+    "voz": {
+      "eco": 0.3
+    },
+    "frases": {
+      "inicio": [
+        "Tráeme la tela y marca con rojo dónde quieres que meta la aguja.",
+        "Cada remiendo tiene su precio… pero hoy te lo hago gratis.",
+        "Pinta la herida. Yo me encargo de que no se note la costura."
+      ],
+      "llegada": [
+        "Mira qué me han subido del salón… Vamos a arreglarla.",
+        "Otra pieza para mi mesa. Dime qué descoso."
+      ],
+      "invocando": [
+        "Punto… punto… punto. Que no se note el hilo.",
+        "Aguanta quieta, que la aguja pincha.",
+        "Estoy cosiendo. No mires hasta que termine."
+      ],
+      "encolado": [
+        "Déjala en el cesto. Ahora sigo con esa."
+      ],
+      "hecho": [
+        "Listo. Ni tú encontrarás la costura.",
+        "Remendado. Arrastra la línea y compara.",
+        "Como nueva… o casi."
+      ],
+      "error": [
+        "Se me ha enredado el hilo. Revisa la tela."
+      ]
+    },
+    "bienvenida": {
+      "t": "Ay, querido… ¿Qué le sobra a tu imagen? ¿Qué le falta? Píntamelo encima… y yo lo coso.",
+      "a": "audio/voz_costurera.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "forense",
+      "workflow": "02_EL_FORENSE.json",
+      "etiqueta": "🩻 Llevar a la morgue",
+      "ayuda": "Ampliar con El Forense",
+      "frase": "Al forense, que lo mire con lupa."
+    },
+    {
+      "a": "doppelganger",
+      "workflow": "05_EL_DOPPELGANGER.json",
+      "etiqueta": "🪞 Al espejo",
+      "ayuda": "Crear su doble en otra escena",
+      "frase": "Que se mire en el espejo…"
+    },
+    {
+      "a": "retrato",
+      "workflow": "07_EL_RETRATO.json",
+      "etiqueta": "🖼 Colgar en la galería",
+      "ayuda": "Darle vida: imagen → vídeo",
+      "frase": "Cuélgalo en la galería. Que despierte."
+    },
+    {
+      "a": "ouija",
+      "workflow": "10_LA_OUIJA.json",
+      "etiqueta": "🔤 A la ouija",
+      "ayuda": "Hacer que hable",
+      "frase": "Llévalo a la mesa de la ouija."
+    }
+  ],
+  "salidas": [
+    "🕯 REMIENDO"
+  ],
+  "controles": [
+    {
+      "id": "tela",
+      "tipo": "lienzo_mascara",
+      "etiqueta": "La tela",
+      "ayuda": "pinta en el recuadro grande",
+      "placeholder": "Arrastra aquí la imagen (o pulsa) y luego pinta encima lo que quieres cambiar",
+      "pincel": 56,
+      "nodo": "🕯 TELA",
+      "widget": "image",
+      "nodo_mascara": "🕯 PATRÓN"
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Qué coso en la zona roja",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 3,
+      "placeholder": "a rusty old key hanging from a nail…",
+      "default": "",
+      "nodo": "🕯 HILO",
+      "widget": "text",
+      "plantilla": "{prompt}. Seamlessly blended into the surrounding image, matching lighting, perspective, grain and texture"
+    },
+    {
+      "id": "fuerza",
+      "tipo": "presets",
+      "etiqueta": "Puntada",
+      "default": 1,
+      "opciones": [
+        {
+          "etiqueta": "Retoque",
+          "icono": "🪡",
+          "desc": "Cambia poco: corrige y mejora lo que ya hay en la zona.",
+          "fija": [
+            {
+              "nodo": "🕯 AGUJA",
+              "widget": "denoise",
+              "valor": 0.55
+            }
+          ]
+        },
+        {
+          "etiqueta": "Cambio",
+          "icono": "✂",
+          "desc": "Sustituye lo de la zona pero respeta formas y colores de alrededor.",
+          "fija": [
+            {
+              "nodo": "🕯 AGUJA",
+              "widget": "denoise",
+              "valor": 0.8
+            }
+          ]
+        },
+        {
+          "etiqueta": "Nuevo",
+          "icono": "🧶",
+          "desc": "Borra la zona por completo y cose algo nuevo desde cero.",
+          "fija": [
+            {
+              "nodo": "🕯 AGUJA",
+              "widget": "denoise",
+              "valor": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dobladillo",
+      "tipo": "deslizador",
+      "etiqueta": "Dobladillo (suavidad del borde)",
+      "avanzado": true,
+      "min": 0,
+      "max": 24,
+      "paso": 1,
+      "default": 8,
+      "nodo": "🕯 DOBLADILLO",
+      "widget": "blur_radius"
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 AGUJA",
+      "widget": "seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 REMIENDO",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/03_costurera/remiendo"
+    }
+  ]
+}

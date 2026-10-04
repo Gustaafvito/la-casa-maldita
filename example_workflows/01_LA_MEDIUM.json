@@ -1,0 +1,443 @@
+{
+ "id": "004f962b-efb4-410d-9d54-2d4a8c68510d",
+ "revision": 0,
+ "last_node_id": 114,
+ "last_link_id": 20,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    100,
+    120
+   ],
+   "size": [
+    380,
+    80
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      1
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "UNETLoader",
+    "models": [
+     {
+      "name": "krea2_turbo_int8_convrot.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/diffusion_models/krea2_turbo_int8_convrot.safetensors",
+      "directory": "diffusion_models"
+     }
+    ]
+   },
+   "widgets_values": [
+    "krea2_turbo_int8_convrot.safetensors",
+    "default"
+   ],
+   "title": "Modelo · Krea 2 Turbo"
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    100,
+    230
+   ],
+   "size": [
+    380,
+    110
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      2,
+      3
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPLoader",
+    "models": [
+     {
+      "name": "qwen3vl_4b_fp8_scaled.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/text_encoders/qwen3vl_4b_fp8_scaled.safetensors",
+      "directory": "text_encoders"
+     }
+    ]
+   },
+   "widgets_values": [
+    "qwen3vl_4b_fp8_scaled.safetensors",
+    "krea2",
+    "default"
+   ],
+   "title": "Codificador de texto"
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    100,
+    370
+   ],
+   "size": [
+    380,
+    80
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      9
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAELoader",
+    "models": [
+     {
+      "name": "qwen_image_vae.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/Krea-2/resolve/main/vae/qwen_image_vae.safetensors",
+      "directory": "vae"
+     }
+    ]
+   },
+   "widgets_values": [
+    "qwen_image_vae.safetensors"
+   ],
+   "title": "VAE"
+  },
+  {
+   "id": 4,
+   "type": "CLIPTextEncode",
+   "pos": [
+    620,
+    80
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      4,
+      13
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "masterpiece, best quality, photorealistic, 8K"
+   ],
+   "title": "🕯 CONJURO",
+   "color": "#232",
+   "bgcolor": "#333"
+  },
+  {
+   "id": 6,
+   "type": "EmptySD3LatentImage",
+   "pos": [
+    612,
+    999
+   ],
+   "size": [
+    420,
+    130
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      6
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "EmptySD3LatentImage"
+   },
+   "widgets_values": [
+    1024,
+    1024,
+    1
+   ],
+   "title": "🕯 LIENZO"
+  },
+  {
+   "id": 7,
+   "type": "KSampler",
+   "pos": [
+    1180,
+    120
+   ],
+   "size": [
+    380,
+    336
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 1
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 4
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 14
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 6
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      7
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    42,
+    "fixed",
+    8,
+    1.0,
+    "euler",
+    "simple",
+    1.0
+   ],
+   "title": "🕯 RITUAL"
+  },
+  {
+   "id": 8,
+   "type": "VAEDecode",
+   "pos": [
+    1700,
+    120
+   ],
+   "size": [
+    260,
+    96
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 7
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "title": "Decodificar"
+  },
+  {
+   "id": 12,
+   "type": "SaveImage",
+   "pos": [
+    2156,
+    127
+   ],
+   "size": [
+    418,
+    598
+   ],
+   "flags": {},
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 11
+    }
+   ],
+   "outputs": [],
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "casa_maldita/01_medium/aparicion"
+   ],
+   "title": "🕯 REVELACIÓN"
+  },
+  {
+   "id": 109,
+   "type": "ConditioningZeroOut",
+   "pos": [
+    620,
+    330
+   ],
+   "size": [
+    420,
+    60
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "conditioning",
+     "type": "CONDITIONING",
+     "link": 13
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      14
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "ConditioningZeroOut"
+   },
+   "title": "Negativo (zero-out)",
+   "widgets_values": []
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   7,
+   0,
+   "MODEL"
+  ],
+  [
+   2,
+   2,
+   0,
+   4,
+   0,
+   "CLIP"
+  ],
+  [
+   9,
+   3,
+   0,
+   8,
+   1,
+   "VAE"
+  ],
+  [
+   4,
+   4,
+   0,
+   7,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   6,
+   6,
+   0,
+   7,
+   3,
+   "LATENT"
+  ],
+  [
+   7,
+   7,
+   0,
+   8,
+   0,
+   "LATENT"
+  ],
+  [
+   11,
+   8,
+   0,
+   12,
+   0,
+   "IMAGE"
+  ],
+  [
+   13,
+   4,
+   0,
+   109,
+   0,
+   "CONDITIONING"
+  ],
+  [
+   14,
+   109,
+   0,
+   7,
+   2,
+   "CONDITIONING"
+  ]
+ ],
+ "version": 0.4,
+ "config": {},
+ "extra": {
+  "casa_maldita": {
+   "espiritu": "medium"
+  }
+ },
+ "groups": []
+}

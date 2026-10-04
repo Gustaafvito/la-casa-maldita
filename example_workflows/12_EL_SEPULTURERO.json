@@ -1,0 +1,927 @@
+{
+  "id": "elena-montaje-01",
+  "revision": 0,
+  "last_node_id": 14,
+  "last_link_id": 17,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "LoadVideo",
+      "pos": [
+        0,
+        0
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            1
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "",
+        "image"
+      ],
+      "title": "🕯 FOSA I"
+    },
+    {
+      "id": 2,
+      "type": "LoadVideo",
+      "pos": [
+        0,
+        250
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            2
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "",
+        "image"
+      ],
+      "title": "🕯 FOSA II"
+    },
+    {
+      "id": 3,
+      "type": "LoadVideo",
+      "pos": [
+        0,
+        500
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            3
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadVideo"
+      },
+      "widgets_values": [
+        "",
+        "image"
+      ],
+      "title": "🕯 FOSA III"
+    },
+    {
+      "id": 4,
+      "type": "GetVideoComponents",
+      "pos": [
+        300,
+        0
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            4
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            8
+          ]
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 5,
+      "type": "GetVideoComponents",
+      "pos": [
+        300,
+        250
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            5
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            9
+          ]
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 6,
+      "type": "GetVideoComponents",
+      "pos": [
+        300,
+        500
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [
+            7
+          ]
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetVideoComponents"
+      },
+      "widgets_values": [],
+      "title": "Fosa III · piezas"
+    },
+    {
+      "id": 7,
+      "type": "ImageBatchJoinWithTransition",
+      "pos": [
+        600,
+        100
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images_1",
+          "type": "IMAGE",
+          "link": 4
+        },
+        {
+          "name": "images_2",
+          "type": "IMAGE",
+          "link": 16
+        },
+        {
+          "name": "start_index",
+          "type": "INT",
+          "widget": {
+            "name": "start_index"
+          },
+          "link": null
+        },
+        {
+          "name": "interpolation",
+          "type": "COMBO",
+          "widget": {
+            "name": "interpolation"
+          },
+          "link": null
+        },
+        {
+          "name": "transition_type",
+          "type": "COMBO",
+          "widget": {
+            "name": "transition_type"
+          },
+          "link": null
+        },
+        {
+          "name": "transitioning_frames",
+          "type": "INT",
+          "widget": {
+            "name": "transitioning_frames"
+          },
+          "link": null
+        },
+        {
+          "name": "blur_radius",
+          "type": "FLOAT",
+          "widget": {
+            "name": "blur_radius"
+          },
+          "link": null
+        },
+        {
+          "name": "reverse",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "reverse"
+          },
+          "link": null
+        },
+        {
+          "name": "device",
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": [
+        111,
+        "linear",
+        "fade",
+        10,
+        0,
+        false,
+        "CPU"
+      ],
+      "title": "🕯 PALADA I"
+    },
+    {
+      "id": 8,
+      "type": "ImageBatchJoinWithTransition",
+      "pos": [
+        900,
+        200
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images_1",
+          "type": "IMAGE",
+          "link": 6
+        },
+        {
+          "name": "images_2",
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "name": "start_index",
+          "type": "INT",
+          "widget": {
+            "name": "start_index"
+          },
+          "link": null
+        },
+        {
+          "name": "interpolation",
+          "type": "COMBO",
+          "widget": {
+            "name": "interpolation"
+          },
+          "link": null
+        },
+        {
+          "name": "transition_type",
+          "type": "COMBO",
+          "widget": {
+            "name": "transition_type"
+          },
+          "link": null
+        },
+        {
+          "name": "transitioning_frames",
+          "type": "INT",
+          "widget": {
+            "name": "transitioning_frames"
+          },
+          "link": null
+        },
+        {
+          "name": "blur_radius",
+          "type": "FLOAT",
+          "widget": {
+            "name": "blur_radius"
+          },
+          "link": null
+        },
+        {
+          "name": "reverse",
+          "type": "BOOLEAN",
+          "widget": {
+            "name": "reverse"
+          },
+          "link": null
+        },
+        {
+          "name": "device",
+          "type": "COMBO",
+          "widget": {
+            "name": "device"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageBatch"
+      },
+      "widgets_values": [
+        222,
+        "linear",
+        "fade",
+        10,
+        0,
+        false,
+        "CPU"
+      ],
+      "title": "🕯 PALADA II"
+    },
+    {
+      "id": 9,
+      "type": "AudioConcat",
+      "pos": [
+        600,
+        400
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio1",
+          "type": "AUDIO",
+          "link": 8
+        },
+        {
+          "name": "audio2",
+          "type": "AUDIO",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            10
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AudioConcat"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 10,
+      "type": "AudioConcat",
+      "pos": [
+        900,
+        450
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "audio1",
+          "type": "AUDIO",
+          "link": 10
+        },
+        {
+          "name": "audio2",
+          "type": "AUDIO",
+          "link": 11
+        }
+      ],
+      "outputs": [
+        {
+          "name": "AUDIO",
+          "type": "AUDIO",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "AudioConcat"
+      },
+      "widgets_values": [],
+      "title": "Audio III"
+    },
+    {
+      "id": 11,
+      "type": "CreateVideo",
+      "pos": [
+        1200,
+        250
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 12
+        },
+        {
+          "name": "audio",
+          "type": "AUDIO",
+          "link": 13,
+          "shape": 7
+        },
+        {
+          "name": "fps",
+          "type": "FLOAT",
+          "widget": {
+            "name": "fps"
+          },
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VIDEO",
+          "type": "VIDEO",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CreateVideo"
+      },
+      "widgets_values": [
+        24
+      ]
+    },
+    {
+      "id": 12,
+      "type": "SaveVideo",
+      "pos": [
+        1500,
+        250
+      ],
+      "size": [
+        270,
+        100
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "video",
+          "type": "VIDEO",
+          "link": 15
+        },
+        {
+          "name": "filename_prefix",
+          "type": "STRING",
+          "widget": {
+            "name": "filename_prefix"
+          },
+          "link": null
+        },
+        {
+          "name": "format",
+          "type": "COMBO",
+          "widget": {
+            "name": "format"
+          },
+          "link": null
+        },
+        {
+          "name": "codec",
+          "type": "COMBO",
+          "widget": {
+            "name": "codec"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "SaveVideo"
+      },
+      "widgets_values": [
+        "casa_maldita/12_sepulturero/lapida",
+        "auto",
+        "auto"
+      ],
+      "title": "🕯 LÁPIDA"
+    },
+    {
+      "id": 13,
+      "type": "ImageResizeKJv2",
+      "pos": [
+        450,
+        250
+      ],
+      "size": [
+        270,
+        260
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 5
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJv2",
+        "cnr_id": "comfyui-kjnodes"
+      },
+      "widgets_values": [
+        720,
+        1280,
+        "lanczos",
+        "pillarbox_blur",
+        "0, 0, 0",
+        "center",
+        2,
+        "cpu"
+      ],
+      "title": "🕯 AJUSTE II"
+    },
+    {
+      "id": 14,
+      "type": "ImageResizeKJv2",
+      "pos": [
+        450,
+        400
+      ],
+      "size": [
+        270,
+        260
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            17
+          ]
+        },
+        {
+          "name": "width",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": null
+        },
+        {
+          "name": "mask",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageResizeKJv2",
+        "cnr_id": "comfyui-kjnodes"
+      },
+      "widgets_values": [
+        720,
+        1280,
+        "lanczos",
+        "pillarbox_blur",
+        "0, 0, 0",
+        "center",
+        2,
+        "cpu"
+      ],
+      "title": "🕯 AJUSTE III"
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      0,
+      4,
+      0,
+      "VIDEO"
+    ],
+    [
+      2,
+      2,
+      0,
+      5,
+      0,
+      "VIDEO"
+    ],
+    [
+      3,
+      3,
+      0,
+      6,
+      0,
+      "VIDEO"
+    ],
+    [
+      4,
+      4,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      5,
+      0,
+      13,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ],
+    [
+      7,
+      6,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      8,
+      4,
+      1,
+      9,
+      0,
+      "AUDIO"
+    ],
+    [
+      9,
+      5,
+      1,
+      9,
+      1,
+      "AUDIO"
+    ],
+    [
+      10,
+      9,
+      0,
+      10,
+      0,
+      "AUDIO"
+    ],
+    [
+      11,
+      6,
+      1,
+      10,
+      1,
+      "AUDIO"
+    ],
+    [
+      12,
+      8,
+      0,
+      11,
+      0,
+      "IMAGE"
+    ],
+    [
+      13,
+      10,
+      0,
+      11,
+      1,
+      "AUDIO"
+    ],
+    [
+      14,
+      4,
+      2,
+      11,
+      2,
+      "FLOAT"
+    ],
+    [
+      15,
+      11,
+      0,
+      12,
+      0,
+      "VIDEO"
+    ],
+    [
+      16,
+      13,
+      0,
+      7,
+      1,
+      "IMAGE"
+    ],
+    [
+      17,
+      14,
+      0,
+      8,
+      1,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "casa_maldita": {
+      "espiritu": "sepulturero"
+    }
+  },
+  "version": 0.4
+}

@@ -1,0 +1,930 @@
+{
+  "id": "00000000-0000-0000-0000-000000000000",
+  "revision": 0,
+  "last_node_id": 26,
+  "last_link_id": 23,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "pos": [
+        100,
+        120
+      ],
+      "size": [
+        380,
+        130
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            10
+          ]
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            1,
+            2
+          ]
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "Juggernaut-XL_v9_RunDiffusionPhoto_v2.safetensors"
+      ],
+      "title": "Modelo · Juggernaut XL"
+    },
+    {
+      "id": 2,
+      "type": "VAELoader",
+      "pos": [
+        100,
+        300
+      ],
+      "size": [
+        380,
+        90
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            15
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader"
+      },
+      "widgets_values": [
+        "sdxl_vae.safetensors"
+      ],
+      "title": "1b · Cargar VAE aparte"
+    },
+    {
+      "id": 3,
+      "type": "CLIPTextEncode",
+      "pos": [
+        620,
+        120
+      ],
+      "size": [
+        420,
+        200
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            6
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "oil painting portrait of a man, renaissance style, ornate gilded frame, museum lighting, chiaroscuro, painterly brushstrokes, highly detailed"
+      ],
+      "title": "🕯 GUION",
+      "color": "#232",
+      "bgcolor": "#333"
+    },
+    {
+      "id": 4,
+      "type": "CLIPTextEncode",
+      "pos": [
+        620,
+        370
+      ],
+      "size": [
+        420,
+        200
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            7
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CLIPTextEncode"
+      },
+      "widgets_values": [
+        "blurry, lowres, bad anatomy, deformed, watermark, text, signature, cartoon, 3d render, oversaturated"
+      ],
+      "title": "Guion negativo",
+      "color": "#322",
+      "bgcolor": "#333"
+    },
+    {
+      "id": 5,
+      "type": "EmptyLatentImage",
+      "pos": [
+        620,
+        975
+      ],
+      "size": [
+        420,
+        140
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            13
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptyLatentImage"
+      },
+      "widgets_values": [
+        1024,
+        1024,
+        1
+      ],
+      "title": "🕯 ESCENARIO"
+    },
+    {
+      "id": 6,
+      "type": "LoadImage",
+      "pos": [
+        1180,
+        120
+      ],
+      "size": [
+        400,
+        380
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            3
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "example.png",
+        "image"
+      ],
+      "title": "🕯 MUÑECO"
+    },
+    {
+      "id": 7,
+      "type": "CannyEdgePreprocessor",
+      "pos": [
+        1180,
+        550
+      ],
+      "size": [
+        400,
+        150
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 3
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            19
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CannyEdgePreprocessor"
+      },
+      "widgets_values": [
+        100,
+        200,
+        1024
+      ],
+      "title": "Hilo · Canny"
+    },
+    {
+      "id": 9,
+      "type": "ControlNetLoader",
+      "pos": [
+        1180,
+        1830
+      ],
+      "size": [
+        400,
+        90
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            8
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetLoader"
+      },
+      "widgets_values": [
+        "controlnet_union_sdxl_promax.safetensors"
+      ],
+      "title": "6d · Cargar UNION promax"
+    },
+    {
+      "id": 10,
+      "type": "SetUnionControlNetType",
+      "pos": [
+        1180,
+        1970
+      ],
+      "size": [
+        400,
+        90
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONTROL_NET",
+          "type": "CONTROL_NET",
+          "links": [
+            9
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SetUnionControlNetType"
+      },
+      "widgets_values": [
+        "canny/lineart/anime_lineart/mlsd"
+      ],
+      "title": "🕯 TIPO DE HILO"
+    },
+    {
+      "id": 11,
+      "type": "ControlNetApplyAdvanced",
+      "pos": [
+        1180,
+        2110
+      ],
+      "size": [
+        400,
+        180
+      ],
+      "flags": {},
+      "order": 11,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 6
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 7
+        },
+        {
+          "name": "control_net",
+          "type": "CONTROL_NET",
+          "link": 9
+        },
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 23
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            11
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            12
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ControlNetApplyAdvanced"
+      },
+      "widgets_values": [
+        0.8,
+        0.0,
+        0.8
+      ],
+      "title": "🕯 TENSIÓN"
+    },
+    {
+      "id": 12,
+      "type": "KSampler",
+      "pos": [
+        1720,
+        120
+      ],
+      "size": [
+        380,
+        330
+      ],
+      "flags": {},
+      "order": 12,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 12
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            14
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        812345678901234,
+        "fixed",
+        20,
+        6.5,
+        "dpmpp_2m",
+        "karras",
+        1.0
+      ],
+      "title": "🕯 FUNCIÓN"
+    },
+    {
+      "id": 13,
+      "type": "VAEDecode",
+      "pos": [
+        2240,
+        120
+      ],
+      "size": [
+        280,
+        100
+      ],
+      "flags": {},
+      "order": 13,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": [],
+      "title": "5a · Decodificar a píxeles"
+    },
+    {
+      "id": 14,
+      "type": "SaveImage",
+      "pos": [
+        2240,
+        270
+      ],
+      "size": [
+        420,
+        560
+      ],
+      "flags": {},
+      "order": 14,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "casa_maldita/04_marionetista/acto"
+      ],
+      "title": "🕯 ACTO"
+    },
+    {
+      "id": 24,
+      "type": "DepthAnythingV2Preprocessor",
+      "pos": [
+        1180,
+        720
+      ],
+      "size": [
+        400,
+        120
+      ],
+      "flags": {},
+      "order": 15,
+      "mode": 0,
+      "inputs": [
+        {
+          "localized_name": "image",
+          "name": "image",
+          "type": "IMAGE",
+          "link": 17
+        },
+        {
+          "localized_name": "ckpt_name",
+          "name": "ckpt_name",
+          "shape": 7,
+          "type": "COMBO",
+          "widget": {
+            "name": "ckpt_name"
+          },
+          "link": null
+        },
+        {
+          "localized_name": "resolution",
+          "name": "resolution",
+          "shape": 7,
+          "type": "INT",
+          "widget": {
+            "name": "resolution"
+          },
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "localized_name": "IMAGEN",
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            20
+          ]
+        }
+      ],
+      "title": "Hilo · Profundidad",
+      "properties": {
+        "cnr_id": "comfyui_controlnet_aux",
+        "ver": "e8b689a513c3e6b63edc44066560ca5919c0576e",
+        "Node name for S&R": "DepthAnythingV2Preprocessor"
+      },
+      "widgets_values": [
+        "depth_anything_v2_vits.pth",
+        1024
+      ],
+      "widgets_values_named": {
+        "ckpt_name": "depth_anything_v2_vits.pth",
+        "resolution": 1024
+      }
+    },
+    {
+      "id": 25,
+      "type": "DWPreprocessor",
+      "pos": [
+        1180,
+        860
+      ],
+      "size": [
+        400,
+        260
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 18
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            21
+          ]
+        },
+        {
+          "name": "POSE_KEYPOINT",
+          "type": "POSE_KEYPOINT",
+          "links": []
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "DWPreprocessor"
+      },
+      "widgets_values": [
+        "enable",
+        "enable",
+        "enable",
+        1024,
+        "yolox_l.onnx",
+        "dw-ll_ucoco_384.onnx",
+        "enable"
+      ],
+      "title": "Hilo · Pose"
+    },
+    {
+      "id": 26,
+      "type": "ImageMaskSwitch",
+      "pos": [
+        1180,
+        1140
+      ],
+      "size": [
+        400,
+        280
+      ],
+      "flags": {},
+      "order": 20,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "select",
+          "type": "INT",
+          "shape": 7,
+          "widget": {
+            "name": "select"
+          },
+          "link": null
+        },
+        {
+          "name": "images1",
+          "type": "IMAGE",
+          "link": 19
+        },
+        {
+          "name": "mask1_opt",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "images2_opt",
+          "type": "IMAGE",
+          "link": 20
+        },
+        {
+          "name": "mask2_opt",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "images3_opt",
+          "type": "IMAGE",
+          "link": 21
+        },
+        {
+          "name": "mask3_opt",
+          "type": "MASK",
+          "link": null
+        },
+        {
+          "name": "images4_opt",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "mask4_opt",
+          "type": "MASK",
+          "link": null
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            23
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": []
+        }
+      ],
+      "title": "🕯 HILOS",
+      "properties": {
+        "Node name for S&R": "ImageMaskSwitch"
+      },
+      "widgets_values": [
+        1
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      1,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      2,
+      1,
+      1,
+      4,
+      0,
+      "CLIP"
+    ],
+    [
+      3,
+      6,
+      0,
+      7,
+      0,
+      "IMAGE"
+    ],
+    [
+      6,
+      3,
+      0,
+      11,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      7,
+      4,
+      0,
+      11,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      8,
+      9,
+      0,
+      10,
+      0,
+      "CONTROL_NET"
+    ],
+    [
+      9,
+      10,
+      0,
+      11,
+      2,
+      "CONTROL_NET"
+    ],
+    [
+      10,
+      1,
+      0,
+      12,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      11,
+      0,
+      12,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      11,
+      1,
+      12,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      5,
+      0,
+      12,
+      3,
+      "LATENT"
+    ],
+    [
+      14,
+      12,
+      0,
+      13,
+      0,
+      "LATENT"
+    ],
+    [
+      15,
+      2,
+      0,
+      13,
+      1,
+      "VAE"
+    ],
+    [
+      16,
+      13,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      17,
+      6,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      18,
+      6,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      19,
+      7,
+      0,
+      26,
+      1,
+      "IMAGE"
+    ],
+    [
+      20,
+      24,
+      0,
+      26,
+      3,
+      "IMAGE"
+    ],
+    [
+      21,
+      25,
+      0,
+      26,
+      5,
+      "IMAGE"
+    ],
+    [
+      23,
+      26,
+      0,
+      11,
+      3,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.35,
+      "offset": [
+        820,
+        1320
+      ]
+    },
+    "casa_maldita": {
+      "espiritu": "marionetista"
+    }
+  },
+  "version": 0.4
+}

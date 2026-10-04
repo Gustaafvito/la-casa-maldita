@@ -1,0 +1,922 @@
+{
+ "last_node_id": 16,
+ "last_link_id": 22,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UNETLoader",
+   "pos": [
+    100,
+    120
+   ],
+   "size": [
+    380,
+    110
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      3
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Modelo · Z-Image Turbo",
+   "properties": {
+    "Node name for S&R": "UNETLoader",
+    "models": [
+     {
+      "name": "z_image_turbo_bf16.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/diffusion_models/z_image_turbo_bf16.safetensors",
+      "directory": "diffusion_models"
+     }
+    ]
+   },
+   "widgets_values": [
+    "z_image_turbo_bf16.safetensors",
+    "default"
+   ],
+   "color": "#3f789e",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    100,
+    270
+   ],
+   "size": [
+    380,
+    110
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "CLIP",
+     "type": "CLIP",
+     "links": [
+      1,
+      2
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Codificador (Qwen)",
+   "properties": {
+    "Node name for S&R": "CLIPLoader",
+    "models": [
+     {
+      "name": "qwen_3_4b.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/text_encoders/qwen_3_4b.safetensors",
+      "directory": "text_encoders"
+     }
+    ]
+   },
+   "widgets_values": [
+    "qwen_3_4b.safetensors",
+    "qwen_image",
+    "default"
+   ],
+   "color": "#3f789e",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    100,
+    420
+   ],
+   "size": [
+    380,
+    90
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "VAE",
+     "type": "VAE",
+     "links": [
+      13,
+      14
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "VAE",
+   "properties": {
+    "Node name for S&R": "VAELoader",
+    "models": [
+     {
+      "name": "ae.safetensors",
+      "url": "https://huggingface.co/Comfy-Org/z_image_turbo/resolve/main/split_files/vae/ae.safetensors",
+      "directory": "vae"
+     }
+    ]
+   },
+   "widgets_values": [
+    "ae.safetensors"
+   ],
+   "color": "#3f789e",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 7,
+   "type": "DifferentialDiffusion",
+   "pos": [
+    100,
+    560
+   ],
+   "size": [
+    380,
+    90
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 3
+    }
+   ],
+   "outputs": [
+    {
+     "name": "MODEL",
+     "type": "MODEL",
+     "links": [
+      4
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Difusión diferencial",
+   "properties": {
+    "Node name for S&R": "DifferentialDiffusion"
+   },
+   "widgets_values": [
+    1.0
+   ],
+   "color": "#3f789e",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 4,
+   "type": "CLIPTextEncode",
+   "pos": [
+    560,
+    120
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 1
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      5
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "🕯 HILO",
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "a red rose, photorealistic, highly detailed"
+   ],
+   "color": "#a1309b",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 5,
+   "type": "CLIPTextEncode",
+   "pos": [
+    560,
+    360
+   ],
+   "size": [
+    420,
+    200
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "clip",
+     "type": "CLIP",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "name": "CONDITIONING",
+     "type": "CONDITIONING",
+     "links": [
+      6
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Hilo negro (negativo)",
+   "properties": {
+    "Node name for S&R": "CLIPTextEncode"
+   },
+   "widgets_values": [
+    "blurry, low quality, deformed, extra limbs, watermark, text, seams, visible edges"
+   ],
+   "color": "#a1309b",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 6,
+   "type": "LoadImage",
+   "pos": [
+    1040,
+    120
+   ],
+   "size": [
+    360,
+    400
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      7,
+      9
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "title": "🕯 TELA",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "example.png",
+    "image"
+   ],
+   "color": "#b58b2a",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 8,
+   "type": "ImageCropByMaskAndResize",
+   "pos": [
+    1460,
+    120
+   ],
+   "size": [
+    340,
+    180
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "link": 7
+    },
+    {
+     "name": "mask",
+     "type": "MASK",
+     "link": 22
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": [
+      10
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "masks",
+     "type": "MASK",
+     "links": [
+      11
+     ],
+     "slot_index": 1
+    },
+    {
+     "name": "bbox",
+     "type": "BBOX",
+     "links": [
+      12
+     ],
+     "slot_index": 2
+    }
+   ],
+   "title": "Recorte de la zona",
+   "properties": {
+    "Node name for S&R": "ImageCropByMaskAndResize"
+   },
+   "widgets_values": [
+    1024,
+    64,
+    256,
+    1024
+   ],
+   "color": "#2a7b7b",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 9,
+   "type": "GrowMaskWithBlur",
+   "pos": [
+    1460,
+    340
+   ],
+   "size": [
+    340,
+    250
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "mask",
+     "type": "MASK",
+     "link": 11
+    }
+   ],
+   "outputs": [
+    {
+     "name": "mask",
+     "type": "MASK",
+     "links": [
+      15,
+      16
+     ],
+     "slot_index": 0
+    },
+    {
+     "name": "mask_inverted",
+     "type": "MASK",
+     "links": [],
+     "slot_index": 1
+    }
+   ],
+   "title": "🕯 DOBLADILLO",
+   "properties": {
+    "Node name for S&R": "GrowMaskWithBlur"
+   },
+   "widgets_values": [
+    4,
+    0.0,
+    true,
+    false,
+    8.0,
+    1.0,
+    1.0,
+    false
+   ],
+   "color": "#2a7b7b",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 10,
+   "type": "VAEEncode",
+   "pos": [
+    1860,
+    120
+   ],
+   "size": [
+    300,
+    110
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "pixels",
+     "type": "IMAGE",
+     "link": 10
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 13
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      17
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Codificar recorte",
+   "properties": {
+    "Node name for S&R": "VAEEncode"
+   },
+   "widgets_values": [],
+   "color": "#8a3f3f",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 11,
+   "type": "SetLatentNoiseMask",
+   "pos": [
+    1860,
+    270
+   ],
+   "size": [
+    300,
+    110
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 17
+    },
+    {
+     "name": "mask",
+     "type": "MASK",
+     "link": 15
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      18
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Marcar zona",
+   "properties": {
+    "Node name for S&R": "SetLatentNoiseMask"
+   },
+   "widgets_values": [],
+   "color": "#8a3f3f",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 12,
+   "type": "KSampler",
+   "pos": [
+    1860,
+    420
+   ],
+   "size": [
+    340,
+    320
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "model",
+     "type": "MODEL",
+     "link": 4
+    },
+    {
+     "name": "positive",
+     "type": "CONDITIONING",
+     "link": 5
+    },
+    {
+     "name": "negative",
+     "type": "CONDITIONING",
+     "link": 6
+    },
+    {
+     "name": "latent_image",
+     "type": "LATENT",
+     "link": 18
+    }
+   ],
+   "outputs": [
+    {
+     "name": "LATENT",
+     "type": "LATENT",
+     "links": [
+      19
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "🕯 AGUJA",
+   "properties": {
+    "Node name for S&R": "KSampler"
+   },
+   "widgets_values": [
+    42,
+    "fixed",
+    8,
+    2.0,
+    "euler",
+    "simple",
+    1.0
+   ],
+   "color": "#8a3f3f",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 13,
+   "type": "VAEDecode",
+   "pos": [
+    1860,
+    780
+   ],
+   "size": [
+    300,
+    110
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "samples",
+     "type": "LATENT",
+     "link": 19
+    },
+    {
+     "name": "vae",
+     "type": "VAE",
+     "link": 14
+    }
+   ],
+   "outputs": [
+    {
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      20
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Decodificar recorte",
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   },
+   "widgets_values": [],
+   "color": "#8a3f3f",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 14,
+   "type": "ImageUncropByMask",
+   "pos": [
+    2260,
+    120
+   ],
+   "size": [
+    340,
+    160
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "destination",
+     "type": "IMAGE",
+     "link": 9
+    },
+    {
+     "name": "source",
+     "type": "IMAGE",
+     "link": 20
+    },
+    {
+     "name": "mask",
+     "type": "MASK",
+     "link": 16
+    },
+    {
+     "name": "bbox",
+     "type": "BBOX",
+     "link": 12
+    }
+   ],
+   "outputs": [
+    {
+     "name": "image",
+     "type": "IMAGE",
+     "links": [
+      21
+     ],
+     "slot_index": 0
+    }
+   ],
+   "title": "Coser de vuelta",
+   "properties": {
+    "Node name for S&R": "ImageUncropByMask"
+   },
+   "widgets_values": [],
+   "color": "#3f8a5a",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 15,
+   "type": "SaveImage",
+   "pos": [
+    2260,
+    320
+   ],
+   "size": [
+    400,
+    420
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "link": 21
+    }
+   ],
+   "outputs": [
+    {
+     "name": "images",
+     "type": "IMAGE",
+     "links": [],
+     "slot_index": 0
+    }
+   ],
+   "title": "🕯 REMIENDO",
+   "properties": {
+    "Node name for S&R": "SaveImage"
+   },
+   "widgets_values": [
+    "casa_maldita/03_costurera/remiendo"
+   ],
+   "color": "#3f8a5a",
+   "bgcolor": "#222"
+  },
+  {
+   "id": 16,
+   "type": "LoadImageMask",
+   "title": "🕯 PATRÓN",
+   "pos": [
+    0,
+    420
+   ],
+   "size": [
+    320,
+    340
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [],
+   "outputs": [
+    {
+     "name": "MASK",
+     "type": "MASK",
+     "links": [
+      22
+     ]
+    }
+   ],
+   "properties": {
+    "Node name for S&R": "LoadImageMask"
+   },
+   "widgets_values": [
+    "example.png",
+    "red",
+    "image"
+   ]
+  }
+ ],
+ "links": [
+  [
+   1,
+   2,
+   0,
+   4,
+   0,
+   "CLIP"
+  ],
+  [
+   2,
+   2,
+   0,
+   5,
+   0,
+   "CLIP"
+  ],
+  [
+   3,
+   1,
+   0,
+   7,
+   0,
+   "MODEL"
+  ],
+  [
+   4,
+   7,
+   0,
+   12,
+   0,
+   "MODEL"
+  ],
+  [
+   5,
+   4,
+   0,
+   12,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   6,
+   5,
+   0,
+   12,
+   2,
+   "CONDITIONING"
+  ],
+  [
+   7,
+   6,
+   0,
+   8,
+   0,
+   "IMAGE"
+  ],
+  [
+   9,
+   6,
+   0,
+   14,
+   0,
+   "IMAGE"
+  ],
+  [
+   10,
+   8,
+   0,
+   10,
+   0,
+   "IMAGE"
+  ],
+  [
+   11,
+   8,
+   1,
+   9,
+   0,
+   "MASK"
+  ],
+  [
+   12,
+   8,
+   2,
+   14,
+   3,
+   "BBOX"
+  ],
+  [
+   13,
+   3,
+   0,
+   10,
+   1,
+   "VAE"
+  ],
+  [
+   14,
+   3,
+   0,
+   13,
+   1,
+   "VAE"
+  ],
+  [
+   15,
+   9,
+   0,
+   11,
+   1,
+   "MASK"
+  ],
+  [
+   16,
+   9,
+   0,
+   14,
+   2,
+   "MASK"
+  ],
+  [
+   17,
+   10,
+   0,
+   11,
+   0,
+   "LATENT"
+  ],
+  [
+   18,
+   11,
+   0,
+   12,
+   3,
+   "LATENT"
+  ],
+  [
+   19,
+   12,
+   0,
+   13,
+   0,
+   "LATENT"
+  ],
+  [
+   20,
+   13,
+   0,
+   14,
+   1,
+   "IMAGE"
+  ],
+  [
+   21,
+   14,
+   0,
+   15,
+   0,
+   "IMAGE"
+  ],
+  [
+   22,
+   16,
+   0,
+   8,
+   1,
+   "MASK"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "casa_maldita": {
+   "espiritu": "costurera"
+  }
+ },
+ "version": 0.4
+}

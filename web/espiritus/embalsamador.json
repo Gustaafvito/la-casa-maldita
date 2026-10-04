@@ -1,0 +1,174 @@
+{
+  "titulo": "EL EMBALSAMADOR",
+  "subtitulo": "Conserva el vídeo… mejor que en vida",
+  "habitacion": "HABITACIÓN XI · LA CRIPTA",
+  "icono": "⚱",
+  "poster": "posters/embalsamador.jpg",
+  "boton": "⚱ EMBALSAMAR ⚱",
+  "vacio": "El sarcófago está vacío…",
+  "pie": "SEEDVR2 VÍDEO · LA CASA MALDITA · gustaafvito.creador.ia",
+  "tema": {
+    "fondo": "#080705",
+    "panel": "rgba(22,18,10,.86)",
+    "acento": "#8c6b2a",
+    "acento2": "#e9d7a6",
+    "texto": "#f1e9d6",
+    "tenue": "#9c8f72"
+  },
+  "narrador": {
+    "nombre": "EL EMBALSAMADOR",
+    "frases": {
+      "inicio": [
+        "Tráeme el cuerpo. Vendas, resinas… y un poco de nitidez.",
+        "Nada se pudre en mi cripta."
+      ],
+      "invocando": [
+        "Venda a venda, fotograma a fotograma…",
+        "Esto lleva su tiempo. Los faraones esperaban siglos."
+      ],
+      "hecho": [
+        "Embalsamado. Durará para siempre.",
+        "Mira qué bien conservado."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ],
+      "llegada": [
+        "Otro cuerpo para la cripta. Colocadlo en la losa."
+      ]
+    },
+    "bienvenida": {
+      "t": "Pase, pase… Tráigame su vídeo. Lo limpiaré, lo afinaré… y lo conservaré mejor que en vida.",
+      "a": "audio/voz_embalsamador.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "sepulturero",
+      "workflow": "12_EL_SEPULTURERO.json",
+      "etiqueta": "⚰ Al cementerio",
+      "ayuda": "Añadir al montaje",
+      "frase": "Al cementerio, que lo entierren junto a los otros.",
+      "medio": "video"
+    }
+  ],
+  "salidas": [
+    "🕯 MOMIA"
+  ],
+  "controles": [
+    {
+      "id": "cuerpo",
+      "tipo": "archivo",
+      "medio": "video",
+      "etiqueta": "El cuerpo (vídeo)",
+      "placeholder": "Arrastra el vídeo que quieres mejorar",
+      "nodo": "🕯 CUERPO",
+      "widget": "file"
+    },
+    {
+      "id": "tam",
+      "tipo": "presets",
+      "etiqueta": "Resolución final",
+      "ayuda": "lado corto",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "720p",
+          "icono": "▫",
+          "desc": "Rápido.",
+          "fija": [
+            {
+              "nodo": "🕯 EMBALSAMAR",
+              "widget": "resolution",
+              "valor": 720
+            }
+          ]
+        },
+        {
+          "etiqueta": "1080p",
+          "icono": "◻",
+          "desc": "Full HD. Tarda bastante.",
+          "fija": [
+            {
+              "nodo": "🕯 EMBALSAMAR",
+              "widget": "resolution",
+              "valor": 1080
+            }
+          ]
+        },
+        {
+          "etiqueta": "1440p",
+          "icono": "▣",
+          "desc": "2K. Muy lento en 16 GB.",
+          "fija": [
+            {
+              "nodo": "🕯 EMBALSAMAR",
+              "widget": "resolution",
+              "valor": 1440
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "venda",
+      "tipo": "presets",
+      "etiqueta": "Vendas",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Ligeras (3B)",
+          "icono": "🩹",
+          "desc": "Modelo ligero y rápido.",
+          "fija": [
+            {
+              "nodo": "🕯 VENDAS",
+              "widget": "model",
+              "valor": "seedvr2_ema_3b_fp8_e4m3fn.safetensors"
+            },
+            {
+              "nodo": "🕯 VENDAS",
+              "widget": "blocks_to_swap",
+              "valor": 0
+            }
+          ]
+        },
+        {
+          "etiqueta": "Maestras (7B)",
+          "icono": "🧻",
+          "desc": "Más detalle, mucho más lento.",
+          "fija": [
+            {
+              "nodo": "🕯 VENDAS",
+              "widget": "model",
+              "valor": "seedvr2_ema_7b_fp8_e4m3fn_mixed_block35_fp16.safetensors"
+            },
+            {
+              "nodo": "🕯 VENDAS",
+              "widget": "blocks_to_swap",
+              "valor": 32
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 EMBALSAMAR",
+      "widget": "seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 MOMIA",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/11_embalsamador/momia"
+    }
+  ]
+}

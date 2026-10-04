@@ -1,0 +1,258 @@
+{
+  "titulo": "EL DOPPELGÄNGER",
+  "subtitulo": "Tu doble está en otra parte… haciendo otra cosa",
+  "habitacion": "HABITACIÓN V · EL ESPEJO",
+  "icono": "🪞",
+  "poster": "posters/doppelganger.jpg",
+  "boton": "🪞 MIRARSE EN EL ESPEJO 🪞",
+  "vacio": "El espejo solo refleja oscuridad…",
+  "pie": "FLUX.2 KLEIN EDIT · LA CASA MALDITA · gustaafvito.creador.ia",
+  "comparar": {
+    "antes": "ORIGINAL",
+    "despues": "DOBLE"
+  },
+  "tema": {
+    "fondo": "#06080c",
+    "panel": "rgba(12,16,24,.86)",
+    "acento": "#5b6fa8",
+    "acento2": "#cfd6e6",
+    "texto": "#e6e9f0",
+    "tenue": "#8a93a8"
+  },
+  "narrador": {
+    "nombre": "EL DOPPELGÄNGER",
+    "frases": {
+      "inicio": [
+        "Enséñame a quién quieres ver… y te diré dónde está su doble.",
+        "Todos tenemos uno. Solo hay que saber mirar."
+      ],
+      "invocando": [
+        "Algo se mueve al otro lado del cristal…",
+        "El reflejo tarda en responder."
+      ],
+      "hecho": [
+        "Ahí está. Igual… pero no del todo.",
+        "Tu doble. No le sostengas la mirada."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ],
+      "llegada": [
+        "Otro rostro para el espejo."
+      ]
+    },
+    "bienvenida": {
+      "t": "Mírate en el espejo… Ese no eres tú. Es tu doble… y ya está en otra parte, haciendo otra cosa.",
+      "a": "audio/voz_doppelganger.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "forense",
+      "workflow": "02_EL_FORENSE.json",
+      "etiqueta": "🩻 Llevar a la morgue",
+      "ayuda": "Ampliar con El Forense",
+      "frase": "Al forense, que lo mire con lupa."
+    },
+    {
+      "a": "costurera",
+      "workflow": "03_LA_COSTURERA.json",
+      "etiqueta": "🧵 Llevar al desván",
+      "ayuda": "Retocar una zona",
+      "frase": "Súbeselo a la costurera."
+    },
+    {
+      "a": "doppelganger",
+      "workflow": "05_EL_DOPPELGANGER.json",
+      "etiqueta": "🪞 Al espejo",
+      "ayuda": "Crear su doble en otra escena",
+      "frase": "Que se mire en el espejo…"
+    },
+    {
+      "a": "retrato",
+      "workflow": "07_EL_RETRATO.json",
+      "etiqueta": "🖼 Colgar en la galería",
+      "ayuda": "Darle vida: imagen → vídeo",
+      "frase": "Cuélgalo en la galería. Que despierte."
+    },
+    {
+      "a": "ouija",
+      "workflow": "10_LA_OUIJA.json",
+      "etiqueta": "🔤 A la ouija",
+      "ayuda": "Hacer que hable",
+      "frase": "Llévalo a la mesa de la ouija."
+    }
+  ],
+  "salidas": [
+    "🕯 DOBLE",
+    "🕯 DOBLE ESCENA"
+  ],
+  "controles": [
+    {
+      "id": "original",
+      "tipo": "imagen",
+      "etiqueta": "El original",
+      "ayuda": "un personaje ficticio o tú",
+      "placeholder": "Arrastra la imagen del personaje",
+      "nodo": "🕯 ORIGINAL",
+      "widget": "image"
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Dónde está y qué hace su doble",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 4,
+      "placeholder": "standing at the end of a flooded hospital corridor, holding a lantern",
+      "default": "",
+      "nodo": "🕯 REFLEJO",
+      "widget": "text",
+      "plantilla": "{fondo}Keep the exact same person: identical face, facial features, identity, hair and clothing; do not alter the face. {prompt}.{escena:texto}",
+      "tambien": [
+        "🕯 REFLEJO ESCENA"
+      ]
+    },
+    {
+      "id": "fondo",
+      "tipo": "archivo",
+      "medio": "imagen",
+      "etiqueta": "Su escenario (opcional)",
+      "ayuda": "una foto del lugar",
+      "placeholder": "Arrastra una imagen del lugar donde quieres que aparezca su doble (opcional)",
+      "nodo": "🕯 ESCENARIO",
+      "widget": "image",
+      "obligatorio": false,
+      "texto_si": "Place the person from the first image into the scene from the second image, matching its lighting and perspective. ",
+      "si_vacio": [
+        {
+          "nodo": "🕯 ESCENARIO",
+          "modo": 2
+        },
+        {
+          "nodo": "🕯 REFLEJO ESCENA",
+          "modo": 2
+        },
+        {
+          "nodo": "🕯 DOBLE ESCENA",
+          "modo": 2
+        }
+      ],
+      "si_lleno": [
+        {
+          "nodo": "🕯 REFLEJO",
+          "modo": 2
+        },
+        {
+          "nodo": "🕯 DOBLE",
+          "modo": 2
+        }
+      ]
+    },
+    {
+      "id": "escena",
+      "tipo": "presets",
+      "etiqueta": "Escenario extra",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Ninguno",
+          "icono": "∅",
+          "desc": "Solo lo que escribas.",
+          "texto": ""
+        },
+        {
+          "etiqueta": "Cementerio",
+          "icono": "🪦",
+          "desc": "Niebla, lápidas y noche.",
+          "texto": " Setting: a foggy old cemetery at night, crooked gravestones."
+        },
+        {
+          "etiqueta": "Manicomio",
+          "icono": "🏚",
+          "desc": "Pasillo abandonado con luz parpadeante.",
+          "texto": " Setting: an abandoned asylum corridor with flickering light."
+        },
+        {
+          "etiqueta": "Bosque",
+          "icono": "🌲",
+          "desc": "Bosque oscuro, luna entre los árboles.",
+          "texto": " Setting: a dark forest under a pale moon."
+        },
+        {
+          "etiqueta": "Fantasma",
+          "icono": "👻",
+          "desc": "Lo convierte en un espectro translúcido.",
+          "texto": " Make the person a translucent pale ghost, glowing faintly."
+        },
+        {
+          "etiqueta": "Iglesia en ruinas",
+          "icono": "⛪",
+          "desc": "Nave derruida, velas y polvo.",
+          "texto": " Setting: a ruined gothic church with broken pews, candles and dust in the light."
+        },
+        {
+          "etiqueta": "Hospital",
+          "icono": "🏥",
+          "desc": "Quirófano abandonado y azulejos sucios.",
+          "texto": " Setting: an abandoned hospital operating room, dirty tiles, a single flickering lamp."
+        },
+        {
+          "etiqueta": "Sótano",
+          "icono": "🕯",
+          "desc": "Sótano húmedo con una bombilla.",
+          "texto": " Setting: a damp stone basement lit by a single bare bulb."
+        },
+        {
+          "etiqueta": "Mansión",
+          "icono": "🏰",
+          "desc": "Salón victoriano con retratos y polvo.",
+          "texto": " Setting: a decaying victorian mansion hall with dusty portraits and cobwebs."
+        },
+        {
+          "etiqueta": "Carretera",
+          "icono": "🚗",
+          "desc": "Carretera vacía de noche, faros y niebla.",
+          "texto": " Setting: an empty country road at night, car headlights cutting through fog."
+        },
+        {
+          "etiqueta": "Lago",
+          "icono": "🌫",
+          "desc": "Muelle de madera en un lago brumoso.",
+          "texto": " Setting: an old wooden pier on a misty black lake at dawn."
+        },
+        {
+          "etiqueta": "Espejos",
+          "icono": "🪞",
+          "desc": "Sala llena de espejos rotos.",
+          "texto": " Setting: a room full of cracked mirrors reflecting the person many times."
+        }
+      ]
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 REFLEJO",
+      "widget": "noise_seed",
+      "tambien": [
+        "🕯 REFLEJO ESCENA"
+      ]
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 DOBLE",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/05_doppelganger/doble"
+    },
+    {
+      "nodo": "🕯 DOBLE ESCENA",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/05_doppelganger/doble"
+    }
+  ]
+}

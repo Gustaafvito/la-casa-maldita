@@ -1,0 +1,320 @@
+{
+  "titulo": "EL MARIONETISTA",
+  "subtitulo": "Mueve los hilos de cualquier figura",
+  "habitacion": "HABITACIÓN IV · EL TEATRILLO",
+  "icono": "🎭",
+  "poster": "posters/marionetista.jpg",
+  "boton": "🎭 QUE EMPIECE LA FUNCIÓN 🎭",
+  "vacio": "El telón sigue bajado…",
+  "pie": "SDXL + CONTROLNET UNION · LA CASA MALDITA · gustaafvito.creador.ia",
+  "comparar": {
+    "antes": "MUÑECO",
+    "despues": "FUNCIÓN"
+  },
+  "tema": {
+    "fondo": "#0a0508",
+    "panel": "rgba(28,10,18,.86)",
+    "acento": "#b3243f",
+    "acento2": "#e8c26a",
+    "texto": "#f0e2d4",
+    "tenue": "#a0848c"
+  },
+  "narrador": {
+    "nombre": "EL MARIONETISTA",
+    "frases": {
+      "inicio": [
+        "Dame una figura y le pongo hilos. Hará lo que yo diga.",
+        "Toda marioneta obedece… si sabes de dónde tirar."
+      ],
+      "invocando": [
+        "Tensando los hilos…",
+        "Arriba el telón."
+      ],
+      "hecho": [
+        "Aplausos. Mira cómo baila.",
+        "Función terminada. Compara la postura con el original."
+      ],
+      "encolado": [
+        "Espera tu turno. Hay otros delante."
+      ],
+      "error": [
+        "Algo se ha torcido en el ritual. Revísalo."
+      ],
+      "llegada": [
+        "Me han subido una figura nueva. A ver cómo se mueve."
+      ]
+    },
+    "bienvenida": {
+      "t": "¡Damas y caballeros, bienvenidos a mi teatrillo! Tráiganme una figura… y yo moveré sus hilos como más les guste.",
+      "a": "audio/voz_marionetista.mp3"
+    }
+  },
+  "enviar": [
+    {
+      "a": "forense",
+      "workflow": "02_EL_FORENSE.json",
+      "etiqueta": "🩻 Llevar a la morgue",
+      "ayuda": "Ampliar con El Forense",
+      "frase": "Al forense, que lo mire con lupa."
+    },
+    {
+      "a": "costurera",
+      "workflow": "03_LA_COSTURERA.json",
+      "etiqueta": "🧵 Llevar al desván",
+      "ayuda": "Retocar una zona",
+      "frase": "Súbeselo a la costurera."
+    },
+    {
+      "a": "doppelganger",
+      "workflow": "05_EL_DOPPELGANGER.json",
+      "etiqueta": "🪞 Al espejo",
+      "ayuda": "Crear su doble en otra escena",
+      "frase": "Que se mire en el espejo…"
+    },
+    {
+      "a": "retrato",
+      "workflow": "07_EL_RETRATO.json",
+      "etiqueta": "🖼 Colgar en la galería",
+      "ayuda": "Darle vida: imagen → vídeo",
+      "frase": "Cuélgalo en la galería. Que despierte."
+    },
+    {
+      "a": "ouija",
+      "workflow": "10_LA_OUIJA.json",
+      "etiqueta": "🔤 A la ouija",
+      "ayuda": "Hacer que hable",
+      "frase": "Llévalo a la mesa de la ouija."
+    }
+  ],
+  "salidas": [
+    "🕯 ACTO"
+  ],
+  "controles": [
+    {
+      "id": "muneco",
+      "tipo": "imagen",
+      "etiqueta": "La figura de referencia",
+      "ayuda": "de ella se copia la forma",
+      "placeholder": "Arrastra la imagen cuya pose, silueta o profundidad quieres copiar",
+      "nodo": "🕯 MUÑECO",
+      "widget": "image"
+    },
+    {
+      "id": "prompt",
+      "tipo": "texto",
+      "etiqueta": "Qué personaje hace la función",
+      "ayuda": "mejor en inglés · Ctrl+Enter",
+      "filas": 4,
+      "placeholder": "a victorian ghost child in a lace nightgown, pale skin, dark hallway",
+      "default": "",
+      "nodo": "🕯 GUION",
+      "widget": "text",
+      "plantilla": "{prompt}, cinematic horror, highly detailed, dramatic lighting"
+    },
+    {
+      "id": "hilo",
+      "tipo": "presets",
+      "etiqueta": "Qué hilo copia",
+      "default": 2,
+      "opciones": [
+        {
+          "etiqueta": "Silueta",
+          "icono": "✏",
+          "desc": "Copia los contornos y bordes (canny).",
+          "fija": [
+            {
+              "nodo": "🕯 HILOS",
+              "widget": "select",
+              "valor": 1
+            },
+            {
+              "nodo": "🕯 TIPO DE HILO",
+              "widget": "type",
+              "valor": "canny/lineart/anime_lineart/mlsd"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Profundidad",
+          "icono": "🌫",
+          "desc": "Copia qué está cerca y qué lejos. Deja más libertad.",
+          "fija": [
+            {
+              "nodo": "🕯 HILOS",
+              "widget": "select",
+              "valor": 2
+            },
+            {
+              "nodo": "🕯 TIPO DE HILO",
+              "widget": "type",
+              "valor": "depth"
+            }
+          ]
+        },
+        {
+          "etiqueta": "Pose",
+          "icono": "🕺",
+          "desc": "Copia solo la postura del cuerpo (esqueleto).",
+          "fija": [
+            {
+              "nodo": "🕯 HILOS",
+              "widget": "select",
+              "valor": 3
+            },
+            {
+              "nodo": "🕯 TIPO DE HILO",
+              "widget": "type",
+              "valor": "openpose"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "tension",
+      "tipo": "presets",
+      "etiqueta": "Tensión",
+      "default": 2,
+      "opciones": [
+        {
+          "etiqueta": "Floja",
+          "icono": "〰",
+          "desc": "Se parece poco: el modelo improvisa más.",
+          "fija": [
+            {
+              "nodo": "🕯 TENSIÓN",
+              "widget": "strength",
+              "valor": 0.5
+            },
+            {
+              "nodo": "🕯 TENSIÓN",
+              "widget": "end_percent",
+              "valor": 0.8
+            }
+          ]
+        },
+        {
+          "etiqueta": "Firme",
+          "icono": "➖",
+          "desc": "Equilibrio entre copiar y crear.",
+          "fija": [
+            {
+              "nodo": "🕯 TENSIÓN",
+              "widget": "strength",
+              "valor": 0.8
+            },
+            {
+              "nodo": "🕯 TENSIÓN",
+              "widget": "end_percent",
+              "valor": 0.8
+            }
+          ]
+        },
+        {
+          "etiqueta": "Tirante",
+          "icono": "🪢",
+          "desc": "Copia la referencia al milímetro.",
+          "fija": [
+            {
+              "nodo": "🕯 TENSIÓN",
+              "widget": "strength",
+              "valor": 1.0
+            },
+            {
+              "nodo": "🕯 TENSIÓN",
+              "widget": "end_percent",
+              "valor": 1.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "lienzo",
+      "tipo": "presets",
+      "etiqueta": "Lienzo",
+      "default": 0,
+      "opciones": [
+        {
+          "etiqueta": "Como la figura",
+          "icono": "🪞",
+          "desc": "Misma proporción que la imagen de referencia: la pose encaja sin deformarse.",
+          "auto_de": "muneco",
+          "nodo": "🕯 ESCENARIO",
+          "megapix": 1
+        },
+        {
+          "etiqueta": "Cuadrado",
+          "icono": "◻",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 ESCENARIO",
+              "widget": "width",
+              "valor": 1024
+            },
+            {
+              "nodo": "🕯 ESCENARIO",
+              "widget": "height",
+              "valor": 1024
+            }
+          ]
+        },
+        {
+          "etiqueta": "Retrato",
+          "icono": "▯",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 ESCENARIO",
+              "widget": "width",
+              "valor": 832
+            },
+            {
+              "nodo": "🕯 ESCENARIO",
+              "widget": "height",
+              "valor": 1216
+            }
+          ]
+        },
+        {
+          "etiqueta": "Horizontal",
+          "icono": "▭",
+          "desc": "",
+          "fija": [
+            {
+              "nodo": "🕯 ESCENARIO",
+              "widget": "width",
+              "valor": 1216
+            },
+            {
+              "nodo": "🕯 ESCENARIO",
+              "widget": "height",
+              "valor": 832
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "semilla",
+      "tipo": "semilla",
+      "etiqueta": "Semilla",
+      "avanzado": true,
+      "nodo": "🕯 FUNCIÓN",
+      "widget": "seed"
+    }
+  ],
+  "fijos": [
+    {
+      "nodo": "🕯 ACTO",
+      "widget": "filename_prefix",
+      "valor": "casa_maldita/04_marionetista/acto"
+    },
+    {
+      "nodo": "Hilo · Pose",
+      "widget": "scale_stick_for_xinsr_cn",
+      "valor": "enable"
+    }
+  ]
+}
