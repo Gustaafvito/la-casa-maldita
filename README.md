@@ -40,7 +40,7 @@ Las habitaciones se pasan el trabajo entre ellas: desde una imagen de La Médium
 1. **Copia la Casa** dentro de `ComfyUI/custom_nodes`:
    ```bash
    cd ComfyUI/custom_nodes
-   git clone https://github.com/TU_USUARIO/la-casa-maldita casa_maldita
+   git clone https://github.com/Gustaafvito/la-casa-maldita casa_maldita
    ```
 2. **Instala los nodos** que usan las habitaciones. Lo más fácil es abrir cualquier habitación y usar
    *ComfyUI-Manager → Install Missing Custom Nodes*. La lista completa:

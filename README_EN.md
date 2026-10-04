@@ -40,7 +40,7 @@ downloading or re-uploading anything.
 1. **Clone the House** into `ComfyUI/custom_nodes`:
    ```bash
    cd ComfyUI/custom_nodes
-   git clone https://github.com/TU_USUARIO/la-casa-maldita casa_maldita
+   git clone https://github.com/Gustaafvito/la-casa-maldita casa_maldita
    ```
 2. **Install the custom nodes** the rooms use. The easiest way is to open any room and use
    *ComfyUI-Manager → Install Missing Custom Nodes*. Full list:
