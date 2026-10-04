@@ -1,7 +1,7 @@
 # 🏚 La Casa Maldita (The Cursed House)
 
-**Twelve horror rooms for ComfyUI.** Each room is a workflow with its own themed panel: pick an option, drop in your image or
-video, press one button… and the character who lives there does the rest. With a lobby, original music and voices.
+**12 ComfyUI workflows turned into a haunted house.** Each room is a workflow with its own panel, character, music and voice: pick an option, drop in your image or
+video, press one button… and the character who lives there does the rest. Plus a lobby with the twelve doors to move between them.
 
 *Versión en español: [README.md](README.md). The panel itself is in Spanish.*
 

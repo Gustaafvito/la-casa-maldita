@@ -1,7 +1,7 @@
 # 🏚 La Casa Maldita
 
-**Doce habitaciones de terror para ComfyUI.** Cada habitación es un workflow con su propio panel temático: eliges, arrastras tu
-imagen o tu vídeo, pulsas un botón… y el personaje que vive allí hace el resto. Con vestíbulo, música propia y voces.
+**12 workflows de ComfyUI convertidos en una casa encantada.** Cada habitación es un workflow con su propio panel, su personaje, su música y su voz: eliges, arrastras tu
+imagen o tu vídeo, pulsas un botón… y el personaje que vive allí hace el resto. Y un vestíbulo con las doce puertas para moverte entre ellas.
 
 *English version: [README_EN.md](README_EN.md)*
 
