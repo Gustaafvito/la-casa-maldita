@@ -4,6 +4,8 @@ import { app } from "../../scripts/app.js";
 import { api } from "../../scripts/api.js";
 
 const BASE = new URL(".", import.meta.url).href;
+// carpeta real de la extensión (si alguien la clona con otro nombre, p. ej. "la-casa-maldita", las plantillas siguen funcionando)
+const CARPETA = decodeURIComponent(new URL(import.meta.url).pathname.split("/").slice(-2)[0]);
 const ID_ROOT = "cm-root";
 const ID_FAB = "cm-fab";
 
@@ -772,7 +774,7 @@ async function sendTo(env, f) {
     const j = await (await api.fetchApi("/upload/image", { method: "POST", body: fd })).json();
     const name = j.subfolder ? `${j.subfolder}/${j.name}` : j.name;
     sessionStorage.setItem("cm-handoff", JSON.stringify({ espiritu: env.a, imagen: name, medio: env.medio || "imagen", desde: current.cfg.titulo }));
-    const wf = await (await fetch(api.apiURL(`/workflow_templates/casa_maldita/${env.workflow}`))).json();
+    const wf = await (await fetch(api.apiURL(`/workflow_templates/${CARPETA}/${env.workflow}`))).json();
     await app.loadGraphData(wf, true, true, env.workflow.replace(/\.json$/, ""));
   } catch (e) { say("error", `No he podido llevarla: ${e.message || e}`); }
 }
@@ -1015,7 +1017,7 @@ const posterURL = (p) => p && (/^(\/|https?:)/.test(p) ? api.apiURL(p.replace(/^
 
 async function abrirPuerta(id, file) {
   try {
-    const wf = await (await fetch(api.apiURL(`/workflow_templates/casa_maldita/${file}`))).json();
+    const wf = await (await fetch(api.apiURL(`/workflow_templates/${CARPETA}/${file}`))).json();
     cerrarVestibulo(false);
     await app.loadGraphData(wf, true, true, file.replace(/\.json$/, ""));
   } catch (e) { console.error("[casa_maldita] no se pudo abrir", file, e); alert(`No se pudo abrir ${file}: ${e.message || e}`); }
