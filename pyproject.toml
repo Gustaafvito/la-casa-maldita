@@ -1,0 +1,24 @@
+[project]
+name = "casa-maldita"
+version = "1.0.0"
+description = "12 workflows de ComfyUI convertidos en una casa encantada: cada uno con su panel, su personaje, su música y su voz · 12 ComfyUI workflows turned into a haunted house, each with its own panel, character, music and voice."
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+dependencies = []
+classifiers = [
+    "Operating System :: OS Independent",
+    "Environment :: GPU :: NVIDIA CUDA",
+]
+
+[project.urls]
+Repository = "https://github.com/Gustaafvito/la-casa-maldita"
+Documentation = "https://github.com/Gustaafvito/la-casa-maldita#readme"
+"Bug Tracker" = "https://github.com/Gustaafvito/la-casa-maldita/issues"
+
+[tool.comfy]
+# PublisherId: el nombre de editor que crees en registry.comfy.org (cámbialo si eliges otro)
+PublisherId = "gustaafvito"
+DisplayName = "La Casa Maldita"
+Icon = "https://raw.githubusercontent.com/Gustaafvito/la-casa-maldita/main/docs/icono.jpg"
+Banner = "https://raw.githubusercontent.com/Gustaafvito/la-casa-maldita/main/docs/banner.jpg"
+requires-comfyui = ">=0.37.0"
