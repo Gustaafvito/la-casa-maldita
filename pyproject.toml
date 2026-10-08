@@ -1,6 +1,6 @@
 [project]
 name = "casa-maldita"
-version = "1.0.0"
+version = "1.0.1"
 description = "12 workflows de ComfyUI convertidos en una casa encantada: cada uno con su panel, su personaje, su música y su voz · 12 ComfyUI workflows turned into a haunted house, each with its own panel, character, music and voice."
 license = { file = "LICENSE" }
 requires-python = ">=3.10"

@@ -384,38 +384,6 @@ function buildControl(c) {
       show(st[c.id]);
       return field(c, h("div", {}, prev, file, quitar));
     }
-    case "scail": {
-      // vídeo de movimiento + personaje para Simple SCAIL 2 (usa su propia API de subida y análisis)
-      const v = st[c.id] || {};
-      const vidBox = h("div", { class: "cm-drop cm-drop-video" }, h("span", {}, "1 · Arrastra el vídeo con el movimiento"));
-      const refBox = h("div", { class: "cm-drop" }, h("span", {}, "2 · Arrastra la imagen del personaje"));
-      const info = h("div", { class: "cm-desc" });
-      const paint = () => {
-        const cur = st[c.id] || {};
-        if (cur.video?.path) { vidBox.innerHTML = ""; vidBox.append(h("video", { src: inputURL(cur.video.path), muted: true, loop: true, autoplay: true })); info.textContent = `${cur.video.duration.toFixed(1)} s · ${cur.video.width}×${cur.video.height} · ${Math.round(cur.video.fps)} fps`; }
-        if (cur.ref?.path) { refBox.innerHTML = ""; refBox.append(h("img", { src: inputURL(cur.ref.path) })); }
-      };
-      const up = async (f, kind) => {
-        say("subiendo", "Un momento… lo estoy trayendo.");
-        const fd = new FormData(); fd.append("file", f);
-        const j = await (await api.fetchApi("/nghtdrp_scail/upload", { method: "POST", body: fd })).json();
-        const cur = { ...(st[c.id] || {}) };
-        if (kind === "video") cur.video = await (await api.fetchApi("/nghtdrp_scail/probe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ path: j.path }) })).json();
-        else cur.ref = { path: j.path, name: j.name };
-        set(cur); paint(); say("inicio");
-      };
-      for (const [box, kind] of [[vidBox, "video"], [refBox, "ref"]]) {
-        const inp = h("input", { type: "file", accept: kind === "video" ? "video/*" : "image/*", style: { display: "none" } });
-        inp.addEventListener("change", () => inp.files[0] && up(inp.files[0], kind));
-        box.addEventListener("click", () => inp.click());
-        box.addEventListener("dragover", (e) => { e.preventDefault(); box.classList.add("over"); });
-        box.addEventListener("dragleave", () => box.classList.remove("over"));
-        box.addEventListener("drop", (e) => { e.preventDefault(); box.classList.remove("over"); if (e.dataTransfer.files[0]) up(e.dataTransfer.files[0], kind); });
-        box.append(inp);
-      }
-      setTimeout(paint, 0);
-      return field(c, h("div", { class: "cm-scail" }, vidBox, refBox, info));
-    }
     case "interruptor": {
       const b = h("button", { class: "cm-toggle" });
       const paint = () => { b.classList.toggle("on", !!st[c.id]); b.textContent = st[c.id] ? (c.si || "Activado") : (c.no || "Apagado"); };
@@ -478,20 +446,6 @@ function aplicar() {
       put(c.nodo, c.widget || (c.medio === "video" ? "file" : c.medio === "audio" ? "audio" : "image"), v);
       for (const m of c.si_vacio || []) { const n = nodeByTitle(m.nodo); if (n) n.mode = 0; }
       for (const m of c.si_lleno || []) { const n = nodeByTitle(m.nodo); if (n) n.mode = m.modo; }
-    } else if (c.tipo === "scail") {
-      const n = nodeByTitle(c.nodo); const w = widgetOf(n, c.widget || "project_data");
-      if (!w) { missing.push(`${c.nodo} › project_data`); continue; }
-      let pj; try { pj = JSON.parse(w.value || "{}"); } catch { pj = {}; }
-      const V = v?.video || {}, R = v?.ref || {};
-      const maxS = resolveToken(c.duracion_de || "", "valor");
-      const dur = Math.min(V.duration || 0, Number(maxS) || V.duration || 0);
-      pj.video = { ...(pj.video || {}), path: V.path, name: V.name, duration: V.duration, width: V.width, height: V.height, fps: V.fps, frame_count: V.frame_count, trim_start: 0, trim_end: dur };
-      pj.references = pj.references || [{}];
-      pj.references[0] = { ...(pj.references[0] || {}), path: R.path, name: R.name, role: "Primary" };
-      const land = (V.width || 0) > (V.height || 0);
-      pj.canvas = { ...(pj.canvas || {}), width: land ? 896 : 512, height: land ? 512 : 896 };
-      pj.render = { ...(pj.render || {}), seed: Math.floor(Math.random() * 2 ** 31) };
-      w.value = JSON.stringify(pj);
     } else if (c.tipo === "lienzo_mascara") {
       /* lo pone prepararMascaras */
     } else if (c.nodo && c.widget && v !== undefined) {
@@ -541,11 +495,6 @@ async function invocar() {
     const parts = name.split("/"); const fn = parts.pop();
     const ok = name && (await fetch(api.apiURL(`/view?filename=${encodeURIComponent(fn)}&subfolder=${encodeURIComponent(parts.join("/"))}&type=input`), { method: "HEAD" }).then((r) => r.ok).catch(() => false));
     if (!ok) { say("error", `Primero: ${c.etiqueta || "el archivo"}. Arrástralo al recuadro.`); return; }
-  }
-  for (const c of (current.cfg.controles || []).filter((c) => c.tipo === "scail")) {
-    const v = current.state[c.id] || {};
-    if (!v.video?.path) { say("error", "Primero: el vídeo con el movimiento."); return; }
-    if (!v.ref?.path) { say("error", "Primero: la imagen del personaje."); return; }
   }
   if (!(await prepararMontaje())) return;
   if (!checkRitual()) return;
@@ -611,12 +560,9 @@ async function prepararMascaras() {
 }
 
 async function infoVideo(name, fpsDefault = 24) {
-  let j = {};
-  try { j = await (await api.fetchApi("/nghtdrp_scail/probe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ path: name }) })).json(); } catch {}
-  if (j.frame_count && j.width) return { frames: j.frame_count, w: j.width, h: j.height };
   const v = document.createElement("video"); v.src = inputURL(name); v.muted = true;
   await new Promise((r) => { v.onloadedmetadata = r; v.onerror = r; setTimeout(r, 4000); });
-  return { frames: j.frame_count || Math.round((v.duration || 0) * fpsDefault), w: j.width || v.videoWidth, h: j.height || v.videoHeight };
+  return { frames: Math.round((v.duration || 0) * fpsDefault), w: v.videoWidth, h: v.videoHeight };
 }
 async function framesDe(name, fpsDefault = 24) { return (await infoVideo(name, fpsDefault)).frames; }
 async function prepararMontaje() {
