@@ -152,7 +152,8 @@
     "cnr_id": "comfy-core",
     "ver": "0.30.0",
     "Node name for S&R": "VAEDecodeAudio"
-   }
+   },
+   "title": "Decodificar audio"
   },
   {
    "id": 122,
@@ -197,7 +198,8 @@
     "cnr_id": "comfy-core",
     "ver": "0.30.0",
     "Node name for S&R": "VAEDecode"
-   }
+   },
+   "title": "Decodificar"
   },
   {
    "id": 124,
@@ -272,7 +274,8 @@
     "scheduler": "linear_quadratic",
     "steps": 6,
     "denoise": 1
-   }
+   },
+   "title": "Programador de pasos"
   },
   {
    "id": 125,
@@ -341,7 +344,8 @@
     "cnr_id": "comfy-core",
     "ver": "0.30.0",
     "Node name for S&R": "SamplerCustomAdvanced"
-   }
+   },
+   "title": "Muestreador"
   },
   {
    "id": 126,
@@ -385,7 +389,8 @@
     "cnr_id": "comfy-core",
     "ver": "0.30.0",
     "Node name for S&R": "BasicGuider"
-   }
+   },
+   "title": "Guía"
   },
   {
    "id": 127,
@@ -507,7 +512,7 @@
      ]
     }
    ],
-   "title": "Text encoder",
+   "title": "Codificador de texto",
    "properties": {
     "cnr_id": "comfy-core",
     "ver": "0.30.0",
@@ -1329,7 +1334,8 @@
     "ver": "da13db9d059f188ea0f30795dc8eea7975c2893c",
     "Node name for S&R": "MiniMaxH3TurboSampler",
     "aux_id": "Larryvrh/ComfyUI-MiniMax-H3-Turbo"
-   }
+   },
+   "title": "Muestreador MiniMax H3 Turbo"
   },
   {
    "id": 246,
@@ -1371,7 +1377,8 @@
      "widget_ue_connectable": {},
      "input_ue_unconnectable": {}
     }
-   }
+   },
+   "title": "Liberar memoria de la GPU"
   },
   {
    "id": 247,
@@ -1413,7 +1420,8 @@
      "widget_ue_connectable": {},
      "input_ue_unconnectable": {}
     }
-   }
+   },
+   "title": "Vaciar caché"
   },
   {
    "id": 289,
@@ -1539,7 +1547,8 @@
     "preview_fps": 8,
     "tiny_vae": "taeh3.safetensors",
     "preview": ""
-   }
+   },
+   "title": "Vista previa del muestreo"
   },
   {
    "id": 300,
@@ -2028,7 +2037,8 @@
     "bit_depth": "auto",
     "color_space": "sRGB",
     "codec": "none"
-   }
+   },
+   "title": "Crear vídeo 1"
   },
   {
    "id": 307,
@@ -2210,7 +2220,8 @@
     "bit_depth": "auto",
     "color_space": "sRGB",
     "codec": "none"
-   }
+   },
+   "title": "Crear vídeo 2"
   },
   {
    "id": 309,

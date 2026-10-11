@@ -47,7 +47,8 @@
         "ver": "0.3.68",
         "Node name for S&R": "JoinImageWithAlpha"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "title": "Unir imagen y transparencia"
     },
     {
       "id": 21,
@@ -159,7 +160,8 @@
       },
       "widgets_values": [
         30
-      ]
+      ],
+      "title": "Crear vídeo"
     },
     {
       "id": 23,
@@ -276,7 +278,8 @@
         "ver": "0.3.68",
         "Node name for S&R": "GetVideoComponents"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "title": "Separar imagen y audio del vídeo"
     },
     {
       "id": 13,

@@ -150,7 +150,8 @@
       "properties": {
         "Node name for S&R": "GetVideoComponents"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "title": "Separar imagen y audio del vídeo 1"
     },
     {
       "id": 5,
@@ -197,7 +198,8 @@
       "properties": {
         "Node name for S&R": "GetVideoComponents"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "title": "Separar imagen y audio del vídeo 2"
     },
     {
       "id": 6,
@@ -495,7 +497,8 @@
       "properties": {
         "Node name for S&R": "AudioConcat"
       },
-      "widgets_values": []
+      "widgets_values": [],
+      "title": "Unir audio"
     },
     {
       "id": 10,
@@ -587,7 +590,8 @@
       },
       "widgets_values": [
         24
-      ]
+      ],
+      "title": "Crear vídeo"
     },
     {
       "id": 12,

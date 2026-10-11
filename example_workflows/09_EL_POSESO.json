@@ -33,7 +33,8 @@
       "widgets_values": [
         "wan2.1_14B_SCAIL_2_int8_convrot.safetensors",
         "default"
-      ]
+      ],
+      "title": "Modelo"
     },
     {
       "id": 2,
@@ -72,7 +73,8 @@
       "widgets_values": [
         "wan2.1_SCAIL_2_DPO_lora_bf16.safetensors",
         1.0
-      ]
+      ],
+      "title": "LoRA 1"
     },
     {
       "id": 3,
@@ -111,7 +113,8 @@
       "widgets_values": [
         "lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
         1.0
-      ]
+      ],
+      "title": "LoRA 2"
     },
     {
       "id": 4,
@@ -150,7 +153,8 @@
       },
       "widgets_values": [
         5.0
-      ]
+      ],
+      "title": "Ajuste de muestreo (shift)"
     },
     {
       "id": 5,
@@ -185,7 +189,8 @@
         "umt5_xxl_fp8_e4m3fn_scaled.safetensors",
         "wan",
         "default"
-      ]
+      ],
+      "title": "Codificador de texto"
     },
     {
       "id": 6,
@@ -262,7 +267,8 @@
       },
       "widgets_values": [
         "bad video, blurry, low quality, distorted, artifacts"
-      ]
+      ],
+      "title": "Texto 1"
     },
     {
       "id": 8,
@@ -294,7 +300,8 @@
       },
       "widgets_values": [
         "wan_2.1_vae.safetensors"
-      ]
+      ],
+      "title": "VAE"
     },
     {
       "id": 9,
@@ -326,7 +333,8 @@
       },
       "widgets_values": [
         "clip_vision_h.safetensors"
-      ]
+      ],
+      "title": "Visión (CLIP Vision)"
     },
     {
       "id": 10,
@@ -373,7 +381,8 @@
       },
       "widgets_values": [
         "sam3.1_multiplex_fp16.safetensors"
-      ]
+      ],
+      "title": "Checkpoint"
     },
     {
       "id": 11,
@@ -412,7 +421,8 @@
       },
       "widgets_values": [
         "person"
-      ]
+      ],
+      "title": "Texto 2"
     },
     {
       "id": 12,
@@ -547,7 +557,8 @@
         "512p",
         832,
         480
-      ]
+      ],
+      "title": "Ajustar vídeo"
     },
     {
       "id": 14,
@@ -643,7 +654,8 @@
         0.5,
         1,
         1
-      ]
+      ],
+      "title": "Seguimiento SAM3 1"
     },
     {
       "id": 16,
@@ -698,7 +710,8 @@
         0.5,
         1,
         1
-      ]
+      ],
+      "title": "Seguimiento SAM3 2"
     },
     {
       "id": 17,
@@ -730,7 +743,8 @@
       },
       "widgets_values": [
         "euler"
-      ]
+      ],
+      "title": "Sampler"
     },
     {
       "id": 18,
@@ -770,7 +784,8 @@
         "simple",
         6,
         1.0
-      ]
+      ],
+      "title": "Programador de pasos"
     },
     {
       "id": 19,
@@ -927,7 +942,8 @@
         "float32",
         false,
         1
-      ]
+      ],
+      "title": "Interpolación RIFE"
     },
     {
       "id": 21,
@@ -1012,7 +1028,8 @@
         "auto",
         "sRGB",
         "none"
-      ]
+      ],
+      "title": "Crear vídeo"
     },
     {
       "id": 23,
