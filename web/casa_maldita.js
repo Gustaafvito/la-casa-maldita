@@ -6,6 +6,8 @@ import { api } from "../../scripts/api.js";
 const BASE = new URL(".", import.meta.url).href;
 // carpeta real de la extensión (si alguien la clona con otro nombre, p. ej. "la-casa-maldita", las plantillas siguen funcionando)
 const CARPETA = decodeURIComponent(new URL(import.meta.url).pathname.split("/").slice(-2)[0]);
+// Enlaces de descarga que vienen del workflow (properties.models[].url): solo https, nunca javascript: ni otros esquemas
+const urlSegura = (u) => (typeof u === "string" && /^https:\/\//i.test(u.trim()) ? u.trim() : null);
 const ID_ROOT = "cm-root";
 const ID_FAB = "cm-fab";
 
@@ -825,7 +827,7 @@ function findMissing() {
       const alt = vals.find((v) => typeof v === "string" && v.split(/[\\/]/).pop() === base);
       if (alt) { w.value = alt; continue; }           // está en otra subcarpeta: lo corrige solo
       const info = known.find((m) => m.name === base) || (current?.cfg?.modelos || {})[base] || {};
-      out.push({ tipo: "modelo", nombre: base, carpeta: info.directory || info.carpeta || "?", url: info.url, nodo: n.title || n.type });
+      out.push({ tipo: "modelo", nombre: base, carpeta: info.directory || info.carpeta || "?", url: urlSegura(info.url), nodo: n.title || n.type });
     }
   }
   return out;
@@ -843,7 +845,7 @@ function checkRitual() {
     h("p", {}, "Faltan piezas para invocar a este espíritu. Descárgalas, colócalas en su carpeta dentro de ComfyUI/models y reinicia ComfyUI."),
     ...miss.map((m) => h("div", { class: "cm-miss-row" },
       h("code", {}, m.nombre, h("small", {}, m.tipo === "modelo" ? `→ models/${m.carpeta}   ·   usado en: ${m.nodo}` : "nodo personalizado · instálalo con ComfyUI-Manager → Install Missing Custom Nodes")),
-      m.url ? h("a", { href: m.url, target: "_blank", rel: "noopener" }, "⬇ descargar") : null)),
+      urlSegura(m.url) ? h("a", { href: urlSegura(m.url), target: "_blank", rel: "noopener noreferrer" }, "⬇ descargar") : null)),
     h("div", { class: "cm-missing-actions" },
       h("button", { class: "cm-mini", onclick: () => { if (checkRitual()) say("inicio", "Todo en su sitio. Ya podemos empezar."); } }, "↻ volver a comprobar"))));
   return false;
