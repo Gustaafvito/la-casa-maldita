@@ -1,5 +1,7 @@
 # 🏚 La Casa Maldita (The Cursed House)
 
+[![ComfyUI Registry](https://img.shields.io/badge/ComfyUI_Registry-casa--maldita-6A4C93?style=for-the-badge)](https://registry.comfy.org/publishers/gustaafvito/nodes/casa-maldita) [![GPL-3.0 license](https://img.shields.io/badge/license-GPL--3.0-blue?style=for-the-badge)](LICENSE)
+
 **12 ComfyUI workflows turned into a haunted house.** Each room is a workflow with its own panel, character, music and voice: pick an option, drop in your image or
 video, press one button… and the character who lives there does the rest. Plus a lobby with the twelve doors to move between them.
 
@@ -36,6 +38,12 @@ downloading or re-uploading anything.
 - **Disk:** about 186 GB for the models of all 12 rooms. You can install only the rooms you want.
 
 ## Installation
+
+**From ComfyUI-Manager (recommended):** La Casa Maldita is in the [official ComfyUI registry](https://registry.comfy.org/publishers/gustaafvito/nodes/casa-maldita). Open *ComfyUI-Manager → Custom Nodes Manager*, search for **La Casa Maldita** and install it, or from a terminal:
+```bash
+comfy node install casa-maldita
+```
+Then continue from step 2. **Manually**, with git:
 
 1. **Clone the House** into `ComfyUI/custom_nodes`:
    ```bash
@@ -94,4 +102,4 @@ asks you to show "Powered by MiniMax H3" and to disclose that the content is AI-
 - Nodes: the authors in the installation table, and the ComfyUI team.
 - Music: made with [ACE-Step 1.5](https://github.com/ace-step/ACE-Step). Voices: ElevenLabs (commercial-license plan).
 
-Made by **gustaafvito.creador.ia**.
+Made by **gustaafvito.creador.ia** · also by him: [Neural Underground](https://github.com/Gustaafvito/neural-underground), 12 workflows in a cyberpunk panel.

@@ -1,5 +1,7 @@
 # 🏚 La Casa Maldita
 
+[![Registro de ComfyUI](https://img.shields.io/badge/ComfyUI_Registry-casa--maldita-6A4C93?style=for-the-badge)](https://registry.comfy.org/publishers/gustaafvito/nodes/casa-maldita) [![Licencia GPL-3.0](https://img.shields.io/badge/licencia-GPL--3.0-blue?style=for-the-badge)](LICENSE)
+
 **12 workflows de ComfyUI convertidos en una casa encantada.** Cada habitación es un workflow con su propio panel, su personaje, su música y su voz: eliges, arrastras tu
 imagen o tu vídeo, pulsas un botón… y el personaje que vive allí hace el resto. Y un vestíbulo con las doce puertas para moverte entre ellas.
 
@@ -36,6 +38,12 @@ Las habitaciones se pasan el trabajo entre ellas: desde una imagen de La Médium
 - **Disco:** unos 186 GB si instalas los modelos de las 12 habitaciones. Puedes instalar solo las que quieras.
 
 ## Instalación
+
+**Desde ComfyUI-Manager (recomendado):** La Casa Maldita está en el [registro oficial de ComfyUI](https://registry.comfy.org/publishers/gustaafvito/nodes/casa-maldita). Abre *ComfyUI-Manager → Custom Nodes Manager*, busca **La Casa Maldita** e instálalo, o desde la terminal:
+```bash
+comfy node install casa-maldita
+```
+Después sigue desde el paso 2. **A mano**, con git:
 
 1. **Copia la Casa** dentro de `ComfyUI/custom_nodes`:
    ```bash
@@ -94,4 +102,4 @@ indicar «Powered by MiniMax H3» y avisar de que el contenido está generado po
 - Nodos: los autores de la tabla de instalación, y el equipo de ComfyUI.
 - Música: generada con [ACE-Step 1.5](https://github.com/ace-step/ACE-Step). Voces: ElevenLabs (plan con licencia comercial).
 
-Hecho por **gustaafvito.creador.ia**.
+Hecho por **gustaafvito.creador.ia** · también de él: [Neural Underground](https://github.com/Gustaafvito/neural-underground), 12 workflows en un panel cyberpunk.
